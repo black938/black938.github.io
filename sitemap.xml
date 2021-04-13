@@ -1,71 +1,71 @@
-<?xml-stylesheet type="text/xsl" href="https://0530.ml/sitemap.xsl"?>
+<?xml-stylesheet type="text/xsl" href="https://black938.github.io/sitemap.xsl"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://0530.ml/about/</loc>
+    <loc>https://black938.github.io/about/</loc>
     <lastmod>2021-04-13T14:29:58+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://0530.ml/categories/</loc>
+    <loc>https://black938.github.io/categories/</loc>
     <lastmod>2021-04-13T14:29:11+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://0530.ml/post/</loc>
+    <loc>https://black938.github.io/post/</loc>
     <lastmod>2021-04-13T14:29:11+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://0530.ml/tags/python/</loc>
+    <loc>https://black938.github.io/tags/python/</loc>
     <lastmod>2021-04-13T14:29:11+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://0530.ml/tags/</loc>
+    <loc>https://black938.github.io/tags/</loc>
     <lastmod>2021-04-13T14:29:11+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://0530.ml/</loc>
+    <loc>https://black938.github.io/</loc>
     <lastmod>2021-04-13T14:29:11+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://0530.ml/categories/%E5%85%B6%E5%AE%83/</loc>
+    <loc>https://black938.github.io/categories/%E5%85%B6%E5%AE%83/</loc>
     <lastmod>2021-04-13T14:29:11+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://0530.ml/post/%E5%85%B6%E5%AE%83/%E9%9D%92%E5%B9%B4%E5%A4%A7%E5%AD%A6%E4%B9%A0/</loc>
+    <loc>https://black938.github.io/post/%E5%85%B6%E5%AE%83/%E9%9D%92%E5%B9%B4%E5%A4%A7%E5%AD%A6%E4%B9%A0/</loc>
     <lastmod>2021-04-13T14:29:11+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://0530.ml/tags/%E8%84%9A%E6%9C%AC/</loc>
+    <loc>https://black938.github.io/tags/%E8%84%9A%E6%9C%AC/</loc>
     <lastmod>2021-04-13T14:29:11+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://0530.ml/readme/</loc>
+    <loc>https://black938.github.io/readme/</loc>
     <priority>0</priority>
   </url>
   

@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>python on WangWenyu</title>
-    <link>https://0530.ml/tags/python/</link>
+    <link>https://black938.github.io/tags/python/</link>
     <description>Recent content in python on WangWenyu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Tue, 13 Apr 2021 14:29:11 +0800</lastBuildDate><atom:link href="https://0530.ml/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 13 Apr 2021 14:29:11 +0800</lastBuildDate><atom:link href="https://black938.github.io/tags/python/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>检测青年大学习(安徽)未学习人员脚本</title>
-      <link>https://0530.ml/post/%E5%85%B6%E5%AE%83/%E9%9D%92%E5%B9%B4%E5%A4%A7%E5%AD%A6%E4%B9%A0/</link>
+      <link>https://black938.github.io/post/%E5%85%B6%E5%AE%83/%E9%9D%92%E5%B9%B4%E5%A4%A7%E5%AD%A6%E4%B9%A0/</link>
       <pubDate>Tue, 13 Apr 2021 14:29:11 +0800</pubDate>
       
-      <guid>https://0530.ml/post/%E5%85%B6%E5%AE%83/%E9%9D%92%E5%B9%B4%E5%A4%A7%E5%AD%A6%E4%B9%A0/</guid>
+      <guid>https://black938.github.io/post/%E5%85%B6%E5%AE%83/%E9%9D%92%E5%B9%B4%E5%A4%A7%E5%AD%A6%E4%B9%A0/</guid>
       <description>1. 简介 一个简单的脚本，辅助各位团支书、班长筛选出本班没有完成青年大学习的同学，限安徽地区。 2. 代码 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 import requests import json</description>
     </item>
     
