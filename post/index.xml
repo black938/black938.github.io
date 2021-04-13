@@ -8,12 +8,12 @@
     <language>zh</language>
     <lastBuildDate>Tue, 13 Apr 2021 14:29:11 +0800</lastBuildDate><atom:link href="https://0530.ml/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>青年大学习反馈未学习人员代码</title>
+      <title>检测青年大学习(安徽)未学习人员脚本</title>
       <link>https://0530.ml/post/%E5%85%B6%E5%AE%83/%E9%9D%92%E5%B9%B4%E5%A4%A7%E5%AD%A6%E4%B9%A0/</link>
       <pubDate>Tue, 13 Apr 2021 14:29:11 +0800</pubDate>
       
       <guid>https://0530.ml/post/%E5%85%B6%E5%AE%83/%E9%9D%92%E5%B9%B4%E5%A4%A7%E5%AD%A6%E4%B9%A0/</guid>
-      <description>青年大学习 1. 简介 你猜 2. 代码 不告诉你 3. 运行流程 我也不告诉你。</description>
+      <description>1. 简介 一个简单的脚本，辅助各位团支书、班长筛选出本班没有完成青年大学习的同学，限安徽地区。 2. 代码 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 import requests import json</description>
     </item>
     
   </channel>
