@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="​    软院荣国平老师的软件工程管理第二讲中讲述了软件发展的三大历史阶段以及软件过程的演变。软件发展可以大体上划分为三个阶段：软硬件一体化阶段（50-70年代），软件作为独立产品阶段（70-90s年代），网络化和服务化阶段（90年代中期迄今）。 ​    在对这个过程的学习和思考中，我总结出如下规律性的发现。  本质问题持续存在 ​    Brooks在《没有银弹》总结出的软件工程四大本质问题：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="软件发展的三大历史阶段以及软件过程的演变中的规律总结">
+<meta property="og:url" content="http://example.com/2021/12/06/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%AE%A1%E7%90%86%E5%B0%8F%E8%AE%BA%E6%96%87/index.html">
+<meta property="og:site_name" content="WangWenyu&#39;s Site">
+<meta property="og:description" content="​    软院荣国平老师的软件工程管理第二讲中讲述了软件发展的三大历史阶段以及软件过程的演变。软件发展可以大体上划分为三个阶段：软硬件一体化阶段（50-70年代），软件作为独立产品阶段（70-90s年代），网络化和服务化阶段（90年代中期迄今）。 ​    在对这个过程的学习和思考中，我总结出如下规律性的发现。  本质问题持续存在 ​    Brooks在《没有银弹》总结出的软件工程四大本质问题：">
+<meta property="og:locale">
+<meta property="article:published_time" content="2021-12-06T07:54:27.000Z">
+<meta property="article:modified_time" content="2022-02-07T09:09:07.413Z">
+<meta property="article:author" content="Wang Wenyu">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>软件发展的三大历史阶段以及软件过程的演变中的规律总结</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2022/02/07/new/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2021/11/25/%E8%BD%AF%E4%BB%B6%E7%AE%A1%E7%90%86%E6%B2%89%E6%80%9D%E5%BD%95%E7%AC%94%E8%AE%B0/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2021/12/06/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%AE%A1%E7%90%86%E5%B0%8F%E8%AE%BA%E6%96%87/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2021/12/06/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%AE%A1%E7%90%86%E5%B0%8F%E8%AE%BA%E6%96%87/&text=软件发展的三大历史阶段以及软件过程的演变中的规律总结"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2021/12/06/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%AE%A1%E7%90%86%E5%B0%8F%E8%AE%BA%E6%96%87/&title=软件发展的三大历史阶段以及软件过程的演变中的规律总结"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2021/12/06/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%AE%A1%E7%90%86%E5%B0%8F%E8%AE%BA%E6%96%87/&is_video=false&description=软件发展的三大历史阶段以及软件过程的演变中的规律总结"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=软件发展的三大历史阶段以及软件过程的演变中的规律总结&body=Check out this article: http://example.com/2021/12/06/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%AE%A1%E7%90%86%E5%B0%8F%E8%AE%BA%E6%96%87/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2021/12/06/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%AE%A1%E7%90%86%E5%B0%8F%E8%AE%BA%E6%96%87/&title=软件发展的三大历史阶段以及软件过程的演变中的规律总结"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2021/12/06/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%AE%A1%E7%90%86%E5%B0%8F%E8%AE%BA%E6%96%87/&title=软件发展的三大历史阶段以及软件过程的演变中的规律总结"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2021/12/06/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%AE%A1%E7%90%86%E5%B0%8F%E8%AE%BA%E6%96%87/&title=软件发展的三大历史阶段以及软件过程的演变中的规律总结"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2021/12/06/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%AE%A1%E7%90%86%E5%B0%8F%E8%AE%BA%E6%96%87/&title=软件发展的三大历史阶段以及软件过程的演变中的规律总结"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2021/12/06/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%AE%A1%E7%90%86%E5%B0%8F%E8%AE%BA%E6%96%87/&name=软件发展的三大历史阶段以及软件过程的演变中的规律总结&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2021/12/06/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%AE%A1%E7%90%86%E5%B0%8F%E8%AE%BA%E6%96%87/&t=软件发展的三大历史阶段以及软件过程的演变中的规律总结"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        软件发展的三大历史阶段以及软件过程的演变中的规律总结
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Wang Wenyu</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2021-12-06T07:54:27.000Z" itemprop="datePublished">2021-12-06</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>​    软院荣国平老师的软件工程管理第二讲中讲述了软件发展的三大历史阶段以及软件过程的演变。软件发展可以大体上划分为三个阶段：软硬件一体化阶段（50-70年代），软件作为独立产品阶段（70-90s年代），网络化和服务化阶段（90年代中期迄今）。</p>
+<p>​    在对这个过程的学习和思考中，我总结出如下规律性的发现。</p>
+<ul>
+<li><p>本质问题持续存在</p>
+<p>​    Brooks在《没有银弹》总结出的软件工程四大本质问题：复杂性、一致性、可变性、不可见性。其最核心的固有属性是不可见性，不可见性贯穿了三大历史阶段，软件是无形的，是意识形态构建出的虚无的东西，它不是一个有形的实际工厂产品，所以即使有UML图等开发工具，不可见性已然存在，这导致了开发人员沟通成本的增加。其他三个属性在不同阶段中凸显程度不同，复杂性在软件发展初期是不明显的，程序大多数都是较为简单的数值运算，远不如当今软件的复杂性。一致性和可变性在当今互联网软件的开发过程中异常突出，既要保证接口的一致，又要对需求变更进行快速的迭代开发。</p>
+</li>
+<li><p>抽象程度越来越高</p>
+<p>​    自从冯诺依曼架构计算机出现，运行与其之上的软件的抽象程度是越来越高的。尤其体现在编程语言上。在软硬件一体化的阶段的初期，输入输出存储三大部分都由打孔纸带完成，程序员用二进制的机器语言对逻辑电路进行开关，直接对硬件进行控制。后来出现了汇编语言，虽然只是用一些指令去代替了机器语言01序列，但抽象程度得到了一定的提高，程序员不用再去直接和二进制机器语言交互了。再到后来出现了高级语言Fortran，脱离了机器层面，抽象程度得到了极大的提高。</p>
+<p>​    虽然这个规律至今都还成立，但是在我阅读过《黑客与画家》关乎编程语言的章节后，我认为可能这个规律并不会持续下去，语言的抽象程度已经到一定地步了，一百年后的编程语言的核心思想可能还是和现代高级语言一致，除非出现非冯诺依曼架构的新计算机架构。</p>
+</li>
+<li><p>耦合性越来越低</p>
+<p>​    这个规律在这两方面都存在：软件-硬件间以及软件自身内部。</p>
+<p>​    在软件完全依附于硬件阶段，软硬件非常耦合，程序员迫于成本问题，必须“Measure twice, cut once”，同一时期的软件作坊倾向于“code and fix”的方法，更类似于我们现在写脚本的思路，coding完了直接跑程序，有问题再fix。在软件成为独立产品阶段及之后的阶段，软硬件之间的耦合性就降低了，因为高级语言让代码脱离了机器层面，尤其以JVM为代表的一众以虚拟机为媒介的高级语言让此类软硬件耦合性几乎不存在了，可以“write onece, run anywhere”。</p>
+<p>​    到了网络化和服务化的阶段，软件自身内部耦合性的降低更为明显。单体应用架构发展为分布式架构，又发展为微服务架构，微服务和微服务之间互不影响，方便部署和开发。但是其也是存在缺陷的，即运维要求更高，微服务数量众多，更多的服务意味着更多的运维投入，在单体应用架构中，只需要保证一个应用的正常运行，而在微服务中，需要保证几十甚至几百个服务的正常运行与协作，这给运维带来了很大的挑战，需要配合DevOps工具链去解决其缺陷。</p>
+</li>
+<li><p>软件过程为软件发展服务</p>
+<p>​    软件过程的出现是为软件发展的不同阶段服务的，在早期，硬件成本非常高，因此导致了软件试错成本很高，所以在这种情况下需要减少错误，所以早期的一种软件过程方法“Measure twice, cut once”才被提出，旨在降低软件研发的成本。同一发展时期，软件作坊以开发一些规模较小的软件为生，以此为基础诞生了新的软件过程方法，“code and fix”方法，类似于写脚本，先一口气把代码都写出来，写完了通过运行软件的方式检查有没有bug，如果有再fix，这仅仅适用于规模较小的软件。随着软件发展的下一阶段到来，软件成为了独立产品，早期的软件过程已经不再适应于独立产品这种大规模软件的开发，这时候需要通过已有的经验教训，总结出一套更加完善的软件过程来指导开发、提升软件的质量。这时候就出现了形式化方法、结构化程序设计、瀑布模型、CMMI等等典型实践。随着计算机硬件的普及，软件急速发展，软件进入了网络化和服务化的时代，该阶段的明显特征是软件工程四个本质问题中的两个尤为凸显：一致性和可变性，软件每天都有新的需求，需要根据需求的变更进行快速的迭代开发，而传统软件过程方法不适用于现代软件快速迭代的特性，因此出现了迭代开发、敏捷开发等等新的方法。</p>
+<p>​    那么可以根据此规律推断，如果下一个软件发展阶段出现，那么不久后理论上应当出现新的软件过程，以配套此软件发展阶段进行指导开发、提升软件质量，因为软件过程就是对该阶段内软件发展的经验和教训做总结。</p>
+</li>
+</ul>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2021/12/06/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%AE%A1%E7%90%86%E5%B0%8F%E8%AE%BA%E6%96%87/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2021/12/06/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%AE%A1%E7%90%86%E5%B0%8F%E8%AE%BA%E6%96%87/&text=软件发展的三大历史阶段以及软件过程的演变中的规律总结"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2021/12/06/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%AE%A1%E7%90%86%E5%B0%8F%E8%AE%BA%E6%96%87/&title=软件发展的三大历史阶段以及软件过程的演变中的规律总结"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2021/12/06/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%AE%A1%E7%90%86%E5%B0%8F%E8%AE%BA%E6%96%87/&is_video=false&description=软件发展的三大历史阶段以及软件过程的演变中的规律总结"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=软件发展的三大历史阶段以及软件过程的演变中的规律总结&body=Check out this article: http://example.com/2021/12/06/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%AE%A1%E7%90%86%E5%B0%8F%E8%AE%BA%E6%96%87/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2021/12/06/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%AE%A1%E7%90%86%E5%B0%8F%E8%AE%BA%E6%96%87/&title=软件发展的三大历史阶段以及软件过程的演变中的规律总结"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2021/12/06/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%AE%A1%E7%90%86%E5%B0%8F%E8%AE%BA%E6%96%87/&title=软件发展的三大历史阶段以及软件过程的演变中的规律总结"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2021/12/06/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%AE%A1%E7%90%86%E5%B0%8F%E8%AE%BA%E6%96%87/&title=软件发展的三大历史阶段以及软件过程的演变中的规律总结"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2021/12/06/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%AE%A1%E7%90%86%E5%B0%8F%E8%AE%BA%E6%96%87/&title=软件发展的三大历史阶段以及软件过程的演变中的规律总结"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2021/12/06/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%AE%A1%E7%90%86%E5%B0%8F%E8%AE%BA%E6%96%87/&name=软件发展的三大历史阶段以及软件过程的演变中的规律总结&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2021/12/06/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%AE%A1%E7%90%86%E5%B0%8F%E8%AE%BA%E6%96%87/&t=软件发展的三大历史阶段以及软件过程的演变中的规律总结"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2017-2022
+    Wang Wenyu
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

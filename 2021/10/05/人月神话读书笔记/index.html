@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="序言本文档为Brooks博士所写的《人月神话》的读书笔记 ，阅读时间为2021.09.26 - 2021.10.5，记录自己读这本软件工程领域圣经时的领悟。 Chap1 焦油坑将大型系统的开发比做史前时代的焦油坑。个人开发者的开发效率看起来往往远大于产业化团队，但是产业化团队却并没有因此被这种个人团队所替代。究其原因在于产出。个人开发者的产出是程序，产业化团队的产出是更加可用可靠的编程系统+编程产">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《人月神话》读书笔记">
+<meta property="og:url" content="http://example.com/2021/10/05/%E4%BA%BA%E6%9C%88%E7%A5%9E%E8%AF%9D%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="WangWenyu&#39;s Site">
+<meta property="og:description" content="序言本文档为Brooks博士所写的《人月神话》的读书笔记 ，阅读时间为2021.09.26 - 2021.10.5，记录自己读这本软件工程领域圣经时的领悟。 Chap1 焦油坑将大型系统的开发比做史前时代的焦油坑。个人开发者的开发效率看起来往往远大于产业化团队，但是产业化团队却并没有因此被这种个人团队所替代。究其原因在于产出。个人开发者的产出是程序，产业化团队的产出是更加可用可靠的编程系统+编程产">
+<meta property="og:locale">
+<meta property="article:published_time" content="2021-10-05T07:54:27.000Z">
+<meta property="article:modified_time" content="2022-02-07T09:04:42.839Z">
+<meta property="article:author" content="Wang Wenyu">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>《人月神话》读书笔记</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2021/10/19/%E4%BA%BA%E4%BB%B6%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2021/10/05/%E4%BA%BA%E6%9C%88%E7%A5%9E%E8%AF%9D%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2021/10/05/%E4%BA%BA%E6%9C%88%E7%A5%9E%E8%AF%9D%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/&text=《人月神话》读书笔记"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2021/10/05/%E4%BA%BA%E6%9C%88%E7%A5%9E%E8%AF%9D%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/&title=《人月神话》读书笔记"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2021/10/05/%E4%BA%BA%E6%9C%88%E7%A5%9E%E8%AF%9D%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/&is_video=false&description=《人月神话》读书笔记"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=《人月神话》读书笔记&body=Check out this article: http://example.com/2021/10/05/%E4%BA%BA%E6%9C%88%E7%A5%9E%E8%AF%9D%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2021/10/05/%E4%BA%BA%E6%9C%88%E7%A5%9E%E8%AF%9D%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/&title=《人月神话》读书笔记"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2021/10/05/%E4%BA%BA%E6%9C%88%E7%A5%9E%E8%AF%9D%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/&title=《人月神话》读书笔记"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2021/10/05/%E4%BA%BA%E6%9C%88%E7%A5%9E%E8%AF%9D%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/&title=《人月神话》读书笔记"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2021/10/05/%E4%BA%BA%E6%9C%88%E7%A5%9E%E8%AF%9D%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/&title=《人月神话》读书笔记"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2021/10/05/%E4%BA%BA%E6%9C%88%E7%A5%9E%E8%AF%9D%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/&name=《人月神话》读书笔记&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2021/10/05/%E4%BA%BA%E6%9C%88%E7%A5%9E%E8%AF%9D%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/&t=《人月神话》读书笔记"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%8F%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">序言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap1-%E7%84%A6%E6%B2%B9%E5%9D%91"><span class="toc-number">2.</span> <span class="toc-text">Chap1 焦油坑</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap2-%E4%BA%BA%E6%9C%88%E7%A5%9E%E8%AF%9D"><span class="toc-number">3.</span> <span class="toc-text">Chap2 人月神话</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap3-%E5%A4%96%E7%A7%91%E6%89%8B%E6%9C%AF%E9%98%9F%E4%BC%8D"><span class="toc-number">4.</span> <span class="toc-text">Chap3 外科手术队伍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap4-%E8%B4%B5%E6%97%8F%E4%B8%93%E5%88%B6%E3%80%81%E6%B0%91%E4%B8%BB%E6%94%BF%E6%B2%BB%E5%92%8C%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1"><span class="toc-number">5.</span> <span class="toc-text">Chap4 贵族专制、民主政治和系统设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap5-%E7%94%BB%E8%9B%87%E6%B7%BB%E8%B6%B3"><span class="toc-number">6.</span> <span class="toc-text">Chap5 画蛇添足</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap6-%E8%B4%AF%E5%BD%BB%E6%89%A7%E8%A1%8C"><span class="toc-number">7.</span> <span class="toc-text">Chap6 贯彻执行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap7-%E4%B8%BA%E4%BB%80%E4%B9%88%E5%B7%B4%E6%AF%94%E4%BC%A6%E5%A1%94%E4%BC%9A%E5%A4%B1%E8%B4%A5"><span class="toc-number">8.</span> <span class="toc-text">Chap7 为什么巴比伦塔会失败</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%92%E5%8F%99"><span class="toc-number">9.</span> <span class="toc-text">插叙</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap8-%E8%83%B8%E6%9C%89%E6%88%90%E7%AB%B9"><span class="toc-number">10.</span> <span class="toc-text">Chap8 胸有成竹</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap9-%E5%89%8A%E8%B6%B3%E9%80%82%E5%B1%A5"><span class="toc-number">11.</span> <span class="toc-text">Chap9 削足适履</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap10-%E6%8F%90%E7%BA%B2%E6%8C%88%E9%A2%86"><span class="toc-number">12.</span> <span class="toc-text">Chap10 提纲挈领</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap11-%E6%9C%AA%E9%9B%A8%E7%BB%B8%E7%BC%AA"><span class="toc-number">13.</span> <span class="toc-text">Chap11 未雨绸缪</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap12-%E5%B9%B2%E5%B0%86%E8%8E%AB%E9%82%AA"><span class="toc-number">14.</span> <span class="toc-text">Chap12 干将莫邪</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap13-%E6%95%B4%E4%BD%93%E9%83%A8%E5%88%86"><span class="toc-number">15.</span> <span class="toc-text">Chap13 整体部分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap14-%E7%A5%B8%E8%B5%B7%E8%90%A7%E5%A2%99"><span class="toc-number">16.</span> <span class="toc-text">Chap14 祸起萧墙</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap15-%E5%8F%A6%E5%A4%96%E4%B8%80%E9%9D%A2"><span class="toc-number">17.</span> <span class="toc-text">Chap15 另外一面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap16-%E6%B2%A1%E6%9C%89%E9%93%B6%E5%BC%B9%E2%80%94%E2%80%94%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E4%B8%AD%E7%9A%84%E6%A0%B9%E6%9C%AC%E5%92%8C%E6%AC%A1%E8%A6%81%E9%97%AE%E9%A2%98"><span class="toc-number">18.</span> <span class="toc-text">Chap16 没有银弹——软件工程中的根本和次要问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap17-%E5%86%8D%E8%AE%AE%E2%80%9C%E6%B2%A1%E6%9C%89%E9%93%B6%E5%BC%B9%E2%80%9D"><span class="toc-number">19.</span> <span class="toc-text">Chap17 再议“没有银弹”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">20.</span> <span class="toc-text">总结</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        《人月神话》读书笔记
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Wang Wenyu</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2021-10-05T07:54:27.000Z" itemprop="datePublished">2021-10-05</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h2><p>本文档为Brooks博士所写的《人月神话》的读书笔记 ，阅读时间为2021.09.26 - 2021.10.5，记录自己读这本软件工程领域圣经时的领悟。</p>
+<h2 id="Chap1-焦油坑"><a href="#Chap1-焦油坑" class="headerlink" title="Chap1 焦油坑"></a>Chap1 焦油坑</h2><p>将大型系统的开发比做史前时代的焦油坑。个人开发者的开发效率看起来往往远大于产业化团队，但是产业化团队却并没有因此被这种个人团队所替代。<strong>究其原因在于产出。</strong>个人开发者的产出是程序，产业化团队的产出是更加可用可靠的编程系统+编程产品&#x3D;编程系统产品，它往往要付出至少3倍*3倍&#x3D;9倍的成本。</p>
+<h2 id="Chap2-人月神话"><a href="#Chap2-人月神话" class="headerlink" title="Chap2 人月神话"></a>Chap2 人月神话</h2><ul>
+<li><p>乐观主义</p>
+<p>编程人员普遍现象之乐观主义弥漫。总是会习惯性的进行一个错误的假设：一切都会运行良好，每一项任务都会花费它应该花费的时间。由于任务总有概率延期，并且大型项目往往会拆分成很多小任务，加之小任务之间往往还有顺序关系，所以这个不为1的概率在多次相乘后总是变小甚至接近于0。</p>
+</li>
+<li><p>人月的概念</p>
+<p>用人月作为工作量的单位是一种谬误的思考方式！对于一项任务可以分为以下四种情况。</p>
+<ul>
+<li><p>完全可以分解</p>
+<p>人增月减</p>
+</li>
+<li><p>完全不可分解</p>
+<p>月 &#x3D; 常数</p>
+</li>
+<li><p>需要沟通，可分解</p>
+<p>人增月减但稍差与完全可分解任务</p>
+</li>
+<li><p>关系错综复杂</p>
+<p>添加更多的人手反而会延长进度</p>
+</li>
+</ul>
+</li>
+<li><p>进度的安排</p>
+<p>推崇要充分的测试，测试要占整体进度一半的时间，因为如果不安排足够的测试，当上线再发现时付出的成本往往更高。但是在现实中往往是编码占据了绝大部分时间。</p>
+</li>
+<li><p>Brooks法则</p>
+</li>
+</ul>
+<p>  一句话总结，向进度落后的项目中增加人手只会使进度更加落后。</p>
+<h2 id="Chap3-外科手术队伍"><a href="#Chap3-外科手术队伍" class="headerlink" title="Chap3 外科手术队伍"></a>Chap3 外科手术队伍</h2><ul>
+<li><p>精干的队伍vs庞大的项目</p>
+<p>产品经理发现水平高的程序员和水平差的程序员之间生产率可能相差一个数量级。所以理想的队伍应当是小型、精干的。但是对于庞大的项目来说，精干的队伍仍旧太慢了。针对于效率，队伍越精干越好，而在庞大的项目面前，却又需要大量的人手。</p>
+</li>
+<li><p>Harlan Mills的建议</p>
+<p>提倡大型项目拆分，每个部分由一个类似外科手术队伍的团队完成。核心在于：决定设计的人员仅有外科医生也就是首席程序员。可以让200个人去解决问题，但只需要协调七分之一也就是20个人左右（也就是外科医生）。队伍内协调配合，各司其职。</p>
+</li>
+</ul>
+<h2 id="Chap4-贵族专制、民主政治和系统设计"><a href="#Chap4-贵族专制、民主政治和系统设计" class="headerlink" title="Chap4 贵族专制、民主政治和系统设计"></a>Chap4 贵族专制、民主政治和系统设计</h2><ul>
+<li><p>贵族专制</p>
+<p>在系统设计、架构决定这种类似于由架构师担任的任务中，要确保“专制”，只能有一个或非常少数互有默契的人来实现。</p>
+</li>
+<li><p>民主政治</p>
+<p>上述“专制”并不意味着没有“民主”，其体现在：具体设计实现依赖于实现人员，他们创造性的思路亦会影响到产品的成本性能比。</p>
+</li>
+</ul>
+<h2 id="Chap5-画蛇添足"><a href="#Chap5-画蛇添足" class="headerlink" title="Chap5 画蛇添足"></a>Chap5 画蛇添足</h2><ul>
+<li><p>架构师准则</p>
+<ul>
+<li>创造性和发明性的实现是开发人员的责任，架构师只需建议，不可支配。</li>
+<li>时刻准备一种实现方案作为保底。</li>
+<li>对以上保持低调和保密。准备放弃坚持所作的改进建议。</li>
+</ul>
+</li>
+<li><p>保持自律</p>
+<p>在开发第一个系统的时候因为没有经验往往会谨言慎行，但是开发第二个系统的时候往往会添加很多修饰功能和个人想法。需要架构师自我约束保持自律，避免一些过度修饰，避免画蛇添足。一个好的办法是让另一个至少拥有两个以上系统开发经验的架构师做决定。</p>
+</li>
+</ul>
+<h2 id="Chap6-贯彻执行"><a href="#Chap6-贯彻执行" class="headerlink" title="Chap6 贯彻执行"></a>Chap6 贯彻执行</h2><ul>
+<li><p>手册</p>
+<p>手册或是书面规格说明是非常必要的，是架构师的一项必要工作。注意其不同于文档，文档是给内部开发使用的，</p>
+</li>
+<li><p>一句古老的格言警告</p>
+<blockquote>
+<p> “不要携带两个时钟出海，带一个或三个”。</p>
+</blockquote>
+<p>不仅是在软件工程的领域中，在生活中也是如此。原书中意为标准只能有一个。</p>
+<ul>
+<li>如果只有一个时钟，参照这一个就可以。</li>
+<li>如果有两个时钟，无论哪一个出现错误，都会导致无标准可参考的灾难。</li>
+<li>如果有三个时钟，如果有一个出现错误，至少还可以有标准可参考。</li>
+</ul>
+</li>
+<li><p>如何确保架构师的决策得到充分实现？</p>
+<ul>
+<li>准确清晰的标准文档</li>
+<li>卓有成效的会议</li>
+<li>电话日志（可以理解为现在的在线会议的会议日志，需要留存书面的文档</li>
+<li>设立测试小组</li>
+</ul>
+</li>
+</ul>
+<h2 id="Chap7-为什么巴比伦塔会失败"><a href="#Chap7-为什么巴比伦塔会失败" class="headerlink" title="Chap7 为什么巴比伦塔会失败"></a>Chap7 为什么巴比伦塔会失败</h2><p>巴比伦塔是诺亚方舟后的人类第二大工程壮举，也是一个失败的工程。项目的先决条件都很好但是在<strong>交流</strong>和<strong>组织</strong>两方面存在欠缺。</p>
+<ul>
+<li><p>团队之间如何交流</p>
+<ul>
+<li>非正式途径（比如电话，作者鼓励大量的电话沟通，语音的交互方式可以更好地促进书面文档的形成)</li>
+<li>会议（作者认为团队和团队之间的会议可以澄清细小误解)</li>
+<li>工作手册（作者认为工作手册是对一系列文档(外部规格说明、接口说明、内部说明等等)进行的组织)</li>
+</ul>
+</li>
+<li><p>团队的组织架构</p>
+<p>作者提出了一点，管理上的组织架构通常都是树形的，这点从我之前科大讯飞实习时的经历也可见一斑，公司架构图就是一个纯纯的树状图。但是交流这件事在树状图里效率很低，网状图才是正解。</p>
+</li>
+</ul>
+<h2 id="插叙"><a href="#插叙" class="headerlink" title="插叙"></a>插叙</h2><p>至此，本书的中心论点已经叙述完毕。大型项目在分工和管理上同小型项目是有很大差别的，这警醒我们千万不要以“小作坊”的方式去做大型软件项目，需要从进度安排、组织架构、人员分工合作各个方面进行精细考量。</p>
+<h2 id="Chap8-胸有成竹"><a href="#Chap8-胸有成竹" class="headerlink" title="Chap8 胸有成竹"></a>Chap8 胸有成竹</h2><p>通过各项数据对比，发现工作量和程序规模之间并不是线性关系，大概是1.5倍指数的关系，工作量的增速更快。除此之外提出了使用适当的高级语言可以提高5倍编程效率的观点。</p>
+<h2 id="Chap9-削足适履"><a href="#Chap9-削足适履" class="headerlink" title="Chap9 削足适履"></a>Chap9 削足适履</h2><p>程序的内存不能无限大，必须在前期进行规模控制。时间和空间是此消彼长的关系，即使现在的server内存动不动几百g，但还是需要留意空间的使用问题。</p>
+<h2 id="Chap10-提纲挈领"><a href="#Chap10-提纲挈领" class="headerlink" title="Chap10 提纲挈领"></a>Chap10 提纲挈领</h2><p>本章主要聊文档。程序员最讨厌的两件事：写文档&amp;&amp;别人不写文档。本章叙述了文档的必要性，只有记录下来的书面文档才能更好地明朗分歧，突出矛盾，同时文档也是沟通的渠道，以及让PM清楚项目的状态。</p>
+<h2 id="Chap11-未雨绸缪"><a href="#Chap11-未雨绸缪" class="headerlink" title="Chap11 未雨绸缪"></a>Chap11 未雨绸缪</h2><p>如同阿里巴巴马云创造的价值观——拥抱变化。开发流程中必然会遇到变动，要提前为可能的变更设计好易于更改的设计。另外，在Fix bugs的过程中，总会以一定几率引入新bug，称之为“前进两步，后退一步”。从熵的角度来看，开发&#x3D;熵减过程，维护&#x3D;熵增过程，维护总会让系统越来越无序，称之为“前进一步，后退一步”。</p>
+<h2 id="Chap12-干将莫邪"><a href="#Chap12-干将莫邪" class="headerlink" title="Chap12 干将莫邪"></a>Chap12 干将莫邪</h2><p>合适的开发工具和高级编程语言是必不可缺的。工欲善其事必先利其器。</p>
+<h2 id="Chap13-整体部分"><a href="#Chap13-整体部分" class="headerlink" title="Chap13 整体部分"></a>Chap13 整体部分</h2><p>开发一个可运行的系统，测试是必不可少的部分。如何将经过测试的构建集成到现有系统也同样重要。实际工作中，要么把构件直接合拢到系统测bug，要么使用系统的各个部分相互测试。更好的办法是“文档化bug”，构件单元缺陷全部被发现但没被完全fix的时候就已经可以系统调试。</p>
+<h2 id="Chap14-祸起萧墙"><a href="#Chap14-祸起萧墙" class="headerlink" title="Chap14 祸起萧墙"></a>Chap14 祸起萧墙</h2><p>制定里程碑可以用于控制项目进度，但里程碑必须是百分之百的确定事件，不能是模棱两可的表述。使用基于关键路径技术的PERT图可以弥补进度。</p>
+<h2 id="Chap15-另外一面"><a href="#Chap15-另外一面" class="headerlink" title="Chap15 另外一面"></a>Chap15 另外一面</h2><p>和提纲挈领章节一样讲述文档。对于一个产品来说，软件本身和文档一样重要。即使是自己的项目文档也是必须的以防遗忘。并且流程图其实并不是一个很好的文档形式。自文档化的程序是一种很好的方式，参考Java集合源码中那些铺天盖地的注释，确实让人一目了然，极大的方便了开发者。</p>
+<h2 id="Chap16-没有银弹——软件工程中的根本和次要问题"><a href="#Chap16-没有银弹——软件工程中的根本和次要问题" class="headerlink" title="Chap16 没有银弹——软件工程中的根本和次要问题"></a>Chap16 没有银弹——软件工程中的根本和次要问题</h2><p>软件工程中，根本任务是抽象构成软件的复杂概念结构的过程，这是人特有的行为，必须由人来完成。而次要任务是用编码表达抽象实体。现实中无论层出不穷的高级语言亦或是微服务、DDD等新技术，都是解决次要任务。如果根本任务没做好，次要任务完成的再好，也不能使生产率得到指数级提升。而根本问题在于软件的内在特性：复杂度、一致性、可变性、不可见性。</p>
+<h2 id="Chap17-再议“没有银弹”"><a href="#Chap17-再议“没有银弹”" class="headerlink" title="Chap17 再议“没有银弹”"></a>Chap17 再议“没有银弹”</h2><p>在没有银弹发表九年后回首，逐一对读者的反驳进行解析，发现子弹的本质依旧没有变。复杂性是软件工程行业的属性也是其主要限制。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>由于本科的专业是CS，这本书算是我补齐SE专业知识的“启蒙书”。首先感谢Brooks博士的这本著作，从文中的外科手术团队、古巴比伦塔、银弹等关键的形象比喻可以感受到他对软件工程的理解之深刻。本文让我深刻理解到，闷头写代码是不值得提倡的行为，编写软件，是一项工程，更是一种社会活动，人不可以只和冰冷的机器交流，人更需要的是和人交流。项目管理的对象永远都是人，绝不可以代码至上而忽略管理。但是对于一个没有项目管理经验的学生来说，此书内容未能消化的地方还有许多。期望在工作多年之后，重新读一遍本书，以获取更深层次的理解。</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%8F%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">序言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap1-%E7%84%A6%E6%B2%B9%E5%9D%91"><span class="toc-number">2.</span> <span class="toc-text">Chap1 焦油坑</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap2-%E4%BA%BA%E6%9C%88%E7%A5%9E%E8%AF%9D"><span class="toc-number">3.</span> <span class="toc-text">Chap2 人月神话</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap3-%E5%A4%96%E7%A7%91%E6%89%8B%E6%9C%AF%E9%98%9F%E4%BC%8D"><span class="toc-number">4.</span> <span class="toc-text">Chap3 外科手术队伍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap4-%E8%B4%B5%E6%97%8F%E4%B8%93%E5%88%B6%E3%80%81%E6%B0%91%E4%B8%BB%E6%94%BF%E6%B2%BB%E5%92%8C%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1"><span class="toc-number">5.</span> <span class="toc-text">Chap4 贵族专制、民主政治和系统设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap5-%E7%94%BB%E8%9B%87%E6%B7%BB%E8%B6%B3"><span class="toc-number">6.</span> <span class="toc-text">Chap5 画蛇添足</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap6-%E8%B4%AF%E5%BD%BB%E6%89%A7%E8%A1%8C"><span class="toc-number">7.</span> <span class="toc-text">Chap6 贯彻执行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap7-%E4%B8%BA%E4%BB%80%E4%B9%88%E5%B7%B4%E6%AF%94%E4%BC%A6%E5%A1%94%E4%BC%9A%E5%A4%B1%E8%B4%A5"><span class="toc-number">8.</span> <span class="toc-text">Chap7 为什么巴比伦塔会失败</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%92%E5%8F%99"><span class="toc-number">9.</span> <span class="toc-text">插叙</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap8-%E8%83%B8%E6%9C%89%E6%88%90%E7%AB%B9"><span class="toc-number">10.</span> <span class="toc-text">Chap8 胸有成竹</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap9-%E5%89%8A%E8%B6%B3%E9%80%82%E5%B1%A5"><span class="toc-number">11.</span> <span class="toc-text">Chap9 削足适履</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap10-%E6%8F%90%E7%BA%B2%E6%8C%88%E9%A2%86"><span class="toc-number">12.</span> <span class="toc-text">Chap10 提纲挈领</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap11-%E6%9C%AA%E9%9B%A8%E7%BB%B8%E7%BC%AA"><span class="toc-number">13.</span> <span class="toc-text">Chap11 未雨绸缪</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap12-%E5%B9%B2%E5%B0%86%E8%8E%AB%E9%82%AA"><span class="toc-number">14.</span> <span class="toc-text">Chap12 干将莫邪</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap13-%E6%95%B4%E4%BD%93%E9%83%A8%E5%88%86"><span class="toc-number">15.</span> <span class="toc-text">Chap13 整体部分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap14-%E7%A5%B8%E8%B5%B7%E8%90%A7%E5%A2%99"><span class="toc-number">16.</span> <span class="toc-text">Chap14 祸起萧墙</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap15-%E5%8F%A6%E5%A4%96%E4%B8%80%E9%9D%A2"><span class="toc-number">17.</span> <span class="toc-text">Chap15 另外一面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap16-%E6%B2%A1%E6%9C%89%E9%93%B6%E5%BC%B9%E2%80%94%E2%80%94%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E4%B8%AD%E7%9A%84%E6%A0%B9%E6%9C%AC%E5%92%8C%E6%AC%A1%E8%A6%81%E9%97%AE%E9%A2%98"><span class="toc-number">18.</span> <span class="toc-text">Chap16 没有银弹——软件工程中的根本和次要问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap17-%E5%86%8D%E8%AE%AE%E2%80%9C%E6%B2%A1%E6%9C%89%E9%93%B6%E5%BC%B9%E2%80%9D"><span class="toc-number">19.</span> <span class="toc-text">Chap17 再议“没有银弹”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">20.</span> <span class="toc-text">总结</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2021/10/05/%E4%BA%BA%E6%9C%88%E7%A5%9E%E8%AF%9D%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2021/10/05/%E4%BA%BA%E6%9C%88%E7%A5%9E%E8%AF%9D%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/&text=《人月神话》读书笔记"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2021/10/05/%E4%BA%BA%E6%9C%88%E7%A5%9E%E8%AF%9D%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/&title=《人月神话》读书笔记"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2021/10/05/%E4%BA%BA%E6%9C%88%E7%A5%9E%E8%AF%9D%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/&is_video=false&description=《人月神话》读书笔记"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=《人月神话》读书笔记&body=Check out this article: http://example.com/2021/10/05/%E4%BA%BA%E6%9C%88%E7%A5%9E%E8%AF%9D%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2021/10/05/%E4%BA%BA%E6%9C%88%E7%A5%9E%E8%AF%9D%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/&title=《人月神话》读书笔记"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2021/10/05/%E4%BA%BA%E6%9C%88%E7%A5%9E%E8%AF%9D%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/&title=《人月神话》读书笔记"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2021/10/05/%E4%BA%BA%E6%9C%88%E7%A5%9E%E8%AF%9D%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/&title=《人月神话》读书笔记"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2021/10/05/%E4%BA%BA%E6%9C%88%E7%A5%9E%E8%AF%9D%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/&title=《人月神话》读书笔记"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2021/10/05/%E4%BA%BA%E6%9C%88%E7%A5%9E%E8%AF%9D%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/&name=《人月神话》读书笔记&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2021/10/05/%E4%BA%BA%E6%9C%88%E7%A5%9E%E8%AF%9D%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/&t=《人月神话》读书笔记"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2017-2022
+    Wang Wenyu
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="[toc] 序言本文档为《程序员修炼之道》的读书笔记 ，阅读时间为2021.11.4 - 2021.11.7， 读完本书发现确实如书评所说，是一本比较好的入职员工培训教材，因其涵盖了程序员这个职业的方方面面，介绍了许多优秀的习惯，笔记的内容就是对其进行总结，期望本人可以尽快将书中内容落到实处。 Chap1 注重实效的哲学应当为自己承诺的事情负责，不要东拼西凑找借口，应当提供多种解决方案供选择。 不">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《程序员修炼之道》读书笔记">
+<meta property="og:url" content="http://example.com/2021/11/07/%E7%A8%8B%E5%BA%8F%E5%91%98%E4%BF%AE%E7%82%BC%E4%B9%8B%E9%81%93%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="WangWenyu&#39;s Site">
+<meta property="og:description" content="[toc] 序言本文档为《程序员修炼之道》的读书笔记 ，阅读时间为2021.11.4 - 2021.11.7， 读完本书发现确实如书评所说，是一本比较好的入职员工培训教材，因其涵盖了程序员这个职业的方方面面，介绍了许多优秀的习惯，笔记的内容就是对其进行总结，期望本人可以尽快将书中内容落到实处。 Chap1 注重实效的哲学应当为自己承诺的事情负责，不要东拼西凑找借口，应当提供多种解决方案供选择。 不">
+<meta property="og:locale">
+<meta property="article:published_time" content="2021-11-07T07:54:27.000Z">
+<meta property="article:modified_time" content="2022-02-07T09:05:04.156Z">
+<meta property="article:author" content="Wang Wenyu">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>《程序员修炼之道》读书笔记</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2021/11/25/%E8%BD%AF%E4%BB%B6%E7%AE%A1%E7%90%86%E6%B2%89%E6%80%9D%E5%BD%95%E7%AC%94%E8%AE%B0/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2021/10/29/%E9%BB%91%E5%AE%A2%E4%B8%8E%E7%94%BB%E5%AE%B6%E7%AC%94%E8%AE%B0/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2021/11/07/%E7%A8%8B%E5%BA%8F%E5%91%98%E4%BF%AE%E7%82%BC%E4%B9%8B%E9%81%93%E7%AC%94%E8%AE%B0/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2021/11/07/%E7%A8%8B%E5%BA%8F%E5%91%98%E4%BF%AE%E7%82%BC%E4%B9%8B%E9%81%93%E7%AC%94%E8%AE%B0/&text=《程序员修炼之道》读书笔记"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2021/11/07/%E7%A8%8B%E5%BA%8F%E5%91%98%E4%BF%AE%E7%82%BC%E4%B9%8B%E9%81%93%E7%AC%94%E8%AE%B0/&title=《程序员修炼之道》读书笔记"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2021/11/07/%E7%A8%8B%E5%BA%8F%E5%91%98%E4%BF%AE%E7%82%BC%E4%B9%8B%E9%81%93%E7%AC%94%E8%AE%B0/&is_video=false&description=《程序员修炼之道》读书笔记"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=《程序员修炼之道》读书笔记&body=Check out this article: http://example.com/2021/11/07/%E7%A8%8B%E5%BA%8F%E5%91%98%E4%BF%AE%E7%82%BC%E4%B9%8B%E9%81%93%E7%AC%94%E8%AE%B0/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2021/11/07/%E7%A8%8B%E5%BA%8F%E5%91%98%E4%BF%AE%E7%82%BC%E4%B9%8B%E9%81%93%E7%AC%94%E8%AE%B0/&title=《程序员修炼之道》读书笔记"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2021/11/07/%E7%A8%8B%E5%BA%8F%E5%91%98%E4%BF%AE%E7%82%BC%E4%B9%8B%E9%81%93%E7%AC%94%E8%AE%B0/&title=《程序员修炼之道》读书笔记"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2021/11/07/%E7%A8%8B%E5%BA%8F%E5%91%98%E4%BF%AE%E7%82%BC%E4%B9%8B%E9%81%93%E7%AC%94%E8%AE%B0/&title=《程序员修炼之道》读书笔记"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2021/11/07/%E7%A8%8B%E5%BA%8F%E5%91%98%E4%BF%AE%E7%82%BC%E4%B9%8B%E9%81%93%E7%AC%94%E8%AE%B0/&title=《程序员修炼之道》读书笔记"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2021/11/07/%E7%A8%8B%E5%BA%8F%E5%91%98%E4%BF%AE%E7%82%BC%E4%B9%8B%E9%81%93%E7%AC%94%E8%AE%B0/&name=《程序员修炼之道》读书笔记&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2021/11/07/%E7%A8%8B%E5%BA%8F%E5%91%98%E4%BF%AE%E7%82%BC%E4%B9%8B%E9%81%93%E7%AC%94%E8%AE%B0/&t=《程序员修炼之道》读书笔记"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%8F%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">序言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap1-%E6%B3%A8%E9%87%8D%E5%AE%9E%E6%95%88%E7%9A%84%E5%93%B2%E5%AD%A6"><span class="toc-number">2.</span> <span class="toc-text">Chap1 注重实效的哲学</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap2-%E6%B3%A8%E9%87%8D%E5%AE%9E%E6%95%88%E7%9A%84%E9%80%94%E5%BE%84"><span class="toc-number">3.</span> <span class="toc-text">Chap2 注重实效的途径</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap3-%E5%9F%BA%E6%9C%AC%E5%B7%A5%E5%85%B7"><span class="toc-number">4.</span> <span class="toc-text">Chap3 基本工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap4-%E6%B3%A8%E9%87%8D%E5%AE%9E%E6%95%88%E7%9A%84%E5%81%8F%E6%89%A7"><span class="toc-number">5.</span> <span class="toc-text">Chap4 注重实效的偏执</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap5-%E5%BC%AF%E6%9B%B2%EF%BC%8C%E6%88%96%E6%8A%98%E6%96%AD"><span class="toc-number">6.</span> <span class="toc-text">Chap5 弯曲，或折断</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap6-%E5%BD%93%E4%BD%A0%E7%BC%96%E7%A0%81%E6%97%B6"><span class="toc-number">7.</span> <span class="toc-text">Chap6 当你编码时</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap7-%E5%9C%A8%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%A7%8B%E4%B9%8B%E5%89%8D"><span class="toc-number">8.</span> <span class="toc-text">Chap7 在项目开始之前</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap8-%E6%B3%A8%E9%87%8D%E5%AE%9E%E6%95%88%E7%9A%84%E9%A1%B9%E7%9B%AE"><span class="toc-number">9.</span> <span class="toc-text">Chap8 注重实效的项目</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        《程序员修炼之道》读书笔记
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Wang Wenyu</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2021-11-07T07:54:27.000Z" itemprop="datePublished">2021-11-07</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>[toc]</p>
+<h2 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h2><p>本文档为《程序员修炼之道》的读书笔记 ，阅读时间为2021.11.4 - 2021.11.7，</p>
+<p>读完本书发现确实如书评所说，是一本比较好的入职员工培训教材，因其涵盖了程序员这个职业的方方面面，介绍了许多优秀的习惯，笔记的内容就是对其进行总结，期望本人可以尽快将书中内容落到实处。</p>
+<h2 id="Chap1-注重实效的哲学"><a href="#Chap1-注重实效的哲学" class="headerlink" title="Chap1 注重实效的哲学"></a>Chap1 注重实效的哲学</h2><p>应当为自己承诺的事情负责，不要东拼西凑找借口，应当提供多种解决方案供选择。</p>
+<p>不要容忍糟糕的代码，发现一个问题修一个，容忍只会造成更多的妥协，最后代码就变成了屎山。相反，如果代码十分漂亮整洁，那么大家都会格外注意不要弄脏了代码。</p>
+<p>要有全局观，要持续不断观察周边发生的事，不要闭门造车，不要像温水煮青蛙一样失去了注意到变化的能力。</p>
+<p>有职业素养的做法应当是把质量变成需求问题，就像是写心脏起搏器、飞机、底层库代码，使得质量成为一个明确的需求。</p>
+<p>知识资产和金融资产非常类似，应当定投，每年都需要让自己学习一些新的知识，技术和非技术类都需要持续的投入。并且要批判的学习，以保证知识库是准确的。不要盲目相信接纳的信息，要注意鉴别其信息来源。</p>
+<p>传达信息的时候，需要注意听众的需求兴趣能力、时机是否合适等等，这是一个双向的过程，不要让交流变成空谈。同时用LaTeX或者Markdown做一个漂亮的文档，不要把外观搞的太丑。</p>
+<h2 id="Chap2-注重实效的途径"><a href="#Chap2-注重实效的途径" class="headerlink" title="Chap2 注重实效的途径"></a>Chap2 注重实效的途径</h2><p>不要重复自己：DRY原则 ~ Don’t Repeat Yourself以及正交性章节提现了设计模式的一些理念，包括代码复用、解耦、单一职责原则等等。本章节除了最后一小节估算，其余均可从设计模式相关资料中进行细致学习。</p>
+<p>要具备一定的估算能力，以便自己对缺少详细信息的问题进行回答。要对事物的数量级有直觉，要通过错误的估算总结自己估算模型哪里出了问题，进行及时的复盘总结。</p>
+<p>要注意估算的准确性评价更多依赖于估算的单位，用工期举例，给出180天和6个月这两种估算时，前者差值以10天左右浮动，后者差值以1个月左右浮动，二者是不同的。要精准的传达估算的单位！</p>
+<h2 id="Chap3-基本工具"><a href="#Chap3-基本工具" class="headerlink" title="Chap3 基本工具"></a>Chap3 基本工具</h2><p>尽量用纯文本记录数据以获取更好的可读性，更好的进行测试，不用为二进制进行多余的处理。</p>
+<p>GUI只是辅助工具，shell才是真理。总有GUI干不了而shell能干的事，shell可以提高生产效率。</p>
+<p>选择一种编辑器并熟练其所有操作，以方便自己对所有文本类文件进行高效处理，提高生产率，现在来说微软的VSCode可能是最佳之选，其本质是基于electron的跨平台编辑器。</p>
+<p>总是要使用版本控制工具。</p>
+<p>测试是为了发现问题，而不是发出指责。开发的第一反应不应该是否定bug的发生，发生就是发生了，一定要开始排错，bug从自己写的代码到第三方库到编译器到os再到甚至cpu都有可能出错，但是第一步最大可能还是自己写的代码出错，不要优先怀疑外部因素。</p>
+<p>生产可以生产代码的代码，减少没必要的重复劳动，参考JetBrains家的各种IDE的generate。</p>
+<h2 id="Chap4-注重实效的偏执"><a href="#Chap4-注重实效的偏执" class="headerlink" title="Chap4 注重实效的偏执"></a>Chap4 注重实效的偏执</h2><p>通常程序员都会不信任他人的代码，需要防卫性的编码，但是注重实效的程序员会更进一步，对自己也进行防卫性的编码。包括但不限于：按照合约设计，即开发前约定遵守一个文档。通过断言去模拟这些合约文档；对自己的代码使用断言；尽早崩溃并抛出错误（这点在Java中已经采用，Golang中更是粗暴到必须手动用一个参数接受函数返回的error）；有始有终的管理好内存（但现在很多语言都自带GC了）。</p>
+<h2 id="Chap5-弯曲，或折断"><a href="#Chap5-弯曲，或折断" class="headerlink" title="Chap5 弯曲，或折断"></a>Chap5 弯曲，或折断</h2><p>提及了一些设计模式里的理念，如降低耦合度、元程序设计把细节移出代码（用配置文件去取代集成）、编写并发以解除代码的时序依赖、观察者模式等等。</p>
+<h2 id="Chap6-当你编码时"><a href="#Chap6-当你编码时" class="headerlink" title="Chap6 当你编码时"></a>Chap6 当你编码时</h2><p>有些代码能跑起来完全可能是阴差阳错的巧合，当这些靠巧合运行起来的代码出错时，是很难挽回的，因为写它的人从一开始就不知道为什么他能工作。所以需要避免这种靠假定事实编程的行为。</p>
+<p>所以要深思熟虑的编程。总是要意识到自己在做什么，依靠可靠的事物，如果有假定那么需要在文档中澄清。最后不仅仅要测试代码，还要用assert测试假定。</p>
+<p>关注算法的时间复杂度，常用数量级的时间复杂度对比要知道o(1) &lt; o(ln(n)) &lt; o(n) &lt; o(nlg(n)) &lt; o(n^2^) &lt; o(n^3^) &lt; o(C^n^)</p>
+<p>当代码违反了DRY原则或非正交或需求变更或需要性能改善时候都要重构代码。往往迫于项目时间不进行重构，但这会导致后期更多的时间投入。就像医生切肿瘤，现在或日后手术都可以，但晚切除会导致更高的风险和成本。因此，早重构，常重构。重构时不要增加新功能，重构前确保已经测试良好，采取步骤短小策略，每个步骤后测试优于大规模改动后长时间调试。</p>
+<p>测试很重要，自己不测试则会让用户测试。</p>
+<p>鼓励使用代码生成器，但是需要去理解它生成的所有代码，否则就会对代码失去控制，不如不用代码生成器。</p>
+<h2 id="Chap7-在项目开始之前"><a href="#Chap7-在项目开始之前" class="headerlink" title="Chap7 在项目开始之前"></a>Chap7 在项目开始之前</h2><p>最完美的需求，不在于已经不需要加入其他需求了，而是在于删不掉任何一条需求。</p>
+<p>需求不是gather起来的，是dig出来的。</p>
+<p>需求的陈述应当具有一般性，需求是硬性的尽量保持不变的，不应卷入易更改的东西如商业政策。保持抽象，不要太具体。</p>
+<p>需求应当制作成在线文档而不是纸质资料，方便所有相关人员阅读。</p>
+<p>不要在盒子外面思考，要找到盒子。这句话把约束比作成盒子，意思是不要被约束所困扰，先看看约束是否必须是遵循的，要找到盒子的边界，确定真正的约束是什么。</p>
+<p>形式化方法绝对应该使用，但是它也只是工具箱里的一种工具而已，不要成为方法学的奴隶。一种方法总会被别的方法取代。</p>
+<h2 id="Chap8-注重实效的项目"><a href="#Chap8-注重实效的项目" class="headerlink" title="Chap8 注重实效的项目"></a>Chap8 注重实效的项目</h2><p>项目的开发是由一个团体完成的，前7章叙述注重实效的个体如何养成，第8章指出这种个体如果在注重实效的团队中工作则好处会成倍增长。</p>
+<p>不要使用手工流程，重复性劳动这件事上人不如计算机，要尽可能用类似cron的自动化工具去无人值守的完成一些任务。</p>
+<p>文档包括内部文档和外部文档，前者包括源码注释、设计与测试文档，后者包括用户手册等发布出去的文档。都要写。</p>
+<p>要编写自文档，参考JavaDoc工具，但是修订历史不应出现在文档中，需要出现的是文档最后更改日期和更改人，文件名也不要出现在自文档中。最重要的信息是作者的姓名，不一定是最后编辑的人，使得责任和义务与源码联系起来。</p>
+<p>多使用API生成工具（比如Swagger、go doc等）</p>
+<p>要满足用户的期望，否则再复杂厉害的应用都是失败的。给用户的要比他们的期望多一丢丢。</p>
+<p>代码不应当匿名，要在自己的代码里签署上自己的名字，否则匿名会让烂代码不断繁殖。这也就是日后CodeReview的思想。</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%8F%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">序言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap1-%E6%B3%A8%E9%87%8D%E5%AE%9E%E6%95%88%E7%9A%84%E5%93%B2%E5%AD%A6"><span class="toc-number">2.</span> <span class="toc-text">Chap1 注重实效的哲学</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap2-%E6%B3%A8%E9%87%8D%E5%AE%9E%E6%95%88%E7%9A%84%E9%80%94%E5%BE%84"><span class="toc-number">3.</span> <span class="toc-text">Chap2 注重实效的途径</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap3-%E5%9F%BA%E6%9C%AC%E5%B7%A5%E5%85%B7"><span class="toc-number">4.</span> <span class="toc-text">Chap3 基本工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap4-%E6%B3%A8%E9%87%8D%E5%AE%9E%E6%95%88%E7%9A%84%E5%81%8F%E6%89%A7"><span class="toc-number">5.</span> <span class="toc-text">Chap4 注重实效的偏执</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap5-%E5%BC%AF%E6%9B%B2%EF%BC%8C%E6%88%96%E6%8A%98%E6%96%AD"><span class="toc-number">6.</span> <span class="toc-text">Chap5 弯曲，或折断</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap6-%E5%BD%93%E4%BD%A0%E7%BC%96%E7%A0%81%E6%97%B6"><span class="toc-number">7.</span> <span class="toc-text">Chap6 当你编码时</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap7-%E5%9C%A8%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%A7%8B%E4%B9%8B%E5%89%8D"><span class="toc-number">8.</span> <span class="toc-text">Chap7 在项目开始之前</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap8-%E6%B3%A8%E9%87%8D%E5%AE%9E%E6%95%88%E7%9A%84%E9%A1%B9%E7%9B%AE"><span class="toc-number">9.</span> <span class="toc-text">Chap8 注重实效的项目</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2021/11/07/%E7%A8%8B%E5%BA%8F%E5%91%98%E4%BF%AE%E7%82%BC%E4%B9%8B%E9%81%93%E7%AC%94%E8%AE%B0/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2021/11/07/%E7%A8%8B%E5%BA%8F%E5%91%98%E4%BF%AE%E7%82%BC%E4%B9%8B%E9%81%93%E7%AC%94%E8%AE%B0/&text=《程序员修炼之道》读书笔记"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2021/11/07/%E7%A8%8B%E5%BA%8F%E5%91%98%E4%BF%AE%E7%82%BC%E4%B9%8B%E9%81%93%E7%AC%94%E8%AE%B0/&title=《程序员修炼之道》读书笔记"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2021/11/07/%E7%A8%8B%E5%BA%8F%E5%91%98%E4%BF%AE%E7%82%BC%E4%B9%8B%E9%81%93%E7%AC%94%E8%AE%B0/&is_video=false&description=《程序员修炼之道》读书笔记"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=《程序员修炼之道》读书笔记&body=Check out this article: http://example.com/2021/11/07/%E7%A8%8B%E5%BA%8F%E5%91%98%E4%BF%AE%E7%82%BC%E4%B9%8B%E9%81%93%E7%AC%94%E8%AE%B0/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2021/11/07/%E7%A8%8B%E5%BA%8F%E5%91%98%E4%BF%AE%E7%82%BC%E4%B9%8B%E9%81%93%E7%AC%94%E8%AE%B0/&title=《程序员修炼之道》读书笔记"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2021/11/07/%E7%A8%8B%E5%BA%8F%E5%91%98%E4%BF%AE%E7%82%BC%E4%B9%8B%E9%81%93%E7%AC%94%E8%AE%B0/&title=《程序员修炼之道》读书笔记"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2021/11/07/%E7%A8%8B%E5%BA%8F%E5%91%98%E4%BF%AE%E7%82%BC%E4%B9%8B%E9%81%93%E7%AC%94%E8%AE%B0/&title=《程序员修炼之道》读书笔记"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2021/11/07/%E7%A8%8B%E5%BA%8F%E5%91%98%E4%BF%AE%E7%82%BC%E4%B9%8B%E9%81%93%E7%AC%94%E8%AE%B0/&title=《程序员修炼之道》读书笔记"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2021/11/07/%E7%A8%8B%E5%BA%8F%E5%91%98%E4%BF%AE%E7%82%BC%E4%B9%8B%E9%81%93%E7%AC%94%E8%AE%B0/&name=《程序员修炼之道》读书笔记&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2021/11/07/%E7%A8%8B%E5%BA%8F%E5%91%98%E4%BF%AE%E7%82%BC%E4%B9%8B%E9%81%93%E7%AC%94%E8%AE%B0/&t=《程序员修炼之道》读书笔记"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2017-2022
+    Wang Wenyu
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
