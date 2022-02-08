@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="[toc] Ch1 基础概念 Linux系统的内核最早是由芬兰大学生Linus Torvalds开发，并于1991年8月发布。  Linux的内核版本命名r.x.y  r: 目前发布的内核主版本  x: 偶数表示稳定版本，奇数表示开发版本  y: 错误修补次数    主流发行版本  RedHat CentOS Ubuntu Debian Fedora    Ch2 分区 默认创建的分区：&amp;#x2F">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux常用知识">
+<meta property="og:url" content="http://example.com/2022/02/08/linux/index.html">
+<meta property="og:site_name" content="WangWenyu&#39;s Site">
+<meta property="og:description" content="[toc] Ch1 基础概念 Linux系统的内核最早是由芬兰大学生Linus Torvalds开发，并于1991年8月发布。  Linux的内核版本命名r.x.y  r: 目前发布的内核主版本  x: 偶数表示稳定版本，奇数表示开发版本  y: 错误修补次数    主流发行版本  RedHat CentOS Ubuntu Debian Fedora    Ch2 分区 默认创建的分区：&amp;#x2F">
+<meta property="og:locale">
+<meta property="og:image" content="https://s2.loli.net/2022/02/08/rb3mecguXOiJNTV.png">
+<meta property="og:image" content="https://s2.loli.net/2022/02/08/GQODr3SsuaEAbYw.png">
+<meta property="og:image" content="https://s2.loli.net/2022/02/08/ER9O8h2vPiJaulw.png">
+<meta property="og:image" content="https://s2.loli.net/2022/02/08/PZaUJtT4bBmxvCG.png">
+<meta property="og:image" content="https://s2.loli.net/2022/02/08/Zra2nf3oFcgqjPY.png">
+<meta property="og:image" content="https://s2.loli.net/2022/02/08/5OpbSCtZGwaokDV.png">
+<meta property="og:image" content="https://s2.loli.net/2022/02/08/XZJ1SHhnaNfdgsp.png">
+<meta property="og:image" content="https://s2.loli.net/2022/02/08/5VTOB7JqEki9PoC.png">
+<meta property="og:image" content="https://s2.loli.net/2022/02/08/VErxweXTzRkmb6K.png">
+<meta property="og:image" content="https://s2.loli.net/2022/02/08/E4iSvJampO2RlUN.png">
+<meta property="og:image" content="https://s2.loli.net/2022/02/08/JNwB8VPxmX9zaUu.png">
+<meta property="og:image" content="https://s2.loli.net/2022/02/08/hmHObN6PrLyzVFI.png">
+<meta property="og:image" content="https://s2.loli.net/2022/02/08/BocSej9bkHpmvls.png">
+<meta property="og:image" content="https://s2.loli.net/2022/02/08/HGtV8YhcKX5STQF.png">
+<meta property="article:published_time" content="2022-02-08T08:58:35.000Z">
+<meta property="article:modified_time" content="2022-02-08T08:59:05.738Z">
+<meta property="article:author" content="Wang Wenyu">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2022/02/08/rb3mecguXOiJNTV.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Linux常用知识</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2022/02/07/new/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2022/02/08/linux/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2022/02/08/linux/&text=Linux常用知识"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2022/02/08/linux/&title=Linux常用知识"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2022/02/08/linux/&is_video=false&description=Linux常用知识"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Linux常用知识&body=Check out this article: http://example.com/2022/02/08/linux/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2022/02/08/linux/&title=Linux常用知识"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2022/02/08/linux/&title=Linux常用知识"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2022/02/08/linux/&title=Linux常用知识"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2022/02/08/linux/&title=Linux常用知识"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2022/02/08/linux/&name=Linux常用知识&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2022/02/08/linux/&t=Linux常用知识"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Ch1-%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5"><span class="toc-number">1.</span> <span class="toc-text">Ch1 基础概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ch2-%E5%88%86%E5%8C%BA"><span class="toc-number">2.</span> <span class="toc-text">Ch2 分区</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ch3-%E5%AD%97%E7%AC%A6%E7%95%8C%E9%9D%A2"><span class="toc-number">3.</span> <span class="toc-text">Ch3 字符界面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ch4-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F"><span class="toc-number">4.</span> <span class="toc-text">Ch4 文件系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ch5-%E6%96%87%E6%9C%AC%E4%B8%8E%E6%9F%A5%E6%89%BE"><span class="toc-number">5.</span> <span class="toc-text">Ch5 文本与查找</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ch6-Shell%E5%91%BD%E4%BB%A4"><span class="toc-number">6.</span> <span class="toc-text">Ch6 Shell命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ch7-%E7%94%A8%E6%88%B7%E5%92%8C%E7%BB%84%E7%BE%A4"><span class="toc-number">7.</span> <span class="toc-text">Ch7 用户和组群</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ch8-%E7%A3%81%E7%9B%98%E5%88%86%E5%8C%BA%E5%92%8C%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86"><span class="toc-number">8.</span> <span class="toc-text">Ch8 磁盘分区和文件系统管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ch9-%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6"><span class="toc-number">9.</span> <span class="toc-text">Ch9 安装软件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ch10-%E6%9D%83%E9%99%90"><span class="toc-number">10.</span> <span class="toc-text">Ch10 权限</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ch11-%E8%BF%9B%E7%A8%8B%E3%80%81%E4%BB%BB%E5%8A%A1%E8%AE%A1%E5%88%92%E3%80%81%E5%90%AF%E5%8A%A8%E8%BF%87%E7%A8%8B"><span class="toc-number">11.</span> <span class="toc-text">Ch11 进程、任务计划、启动过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ch12-%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE%E3%80%81systemd"><span class="toc-number">12.</span> <span class="toc-text">Ch12 网络配置、systemd</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ch13-%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E9%85%8D%E7%BD%AE"><span class="toc-number">13.</span> <span class="toc-text">Ch13 远程连接配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ch14-NFS%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AE"><span class="toc-number">14.</span> <span class="toc-text">Ch14 NFS服务器配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ch15-LVM"><span class="toc-number">15.</span> <span class="toc-text">Ch15 LVM</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Linux常用知识
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Wang Wenyu</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2022-02-08T08:58:35.000Z" itemprop="datePublished">2022-02-08</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/">知识总结</a>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>[toc]</p>
+<h2 id="Ch1-基础概念"><a href="#Ch1-基础概念" class="headerlink" title="Ch1 基础概念"></a>Ch1 基础概念</h2><ol>
+<li><p>Linux系统的内核最早是由芬兰大学生Linus Torvalds开发，并于1991年8月发布。</p>
+</li>
+<li><p>Linux的内核版本命名r.x.y</p>
+<ul>
+<li><p>r: 目前发布的内核主版本</p>
+</li>
+<li><p>x: 偶数表示稳定版本，奇数表示开发版本</p>
+</li>
+<li><p>y: 错误修补次数</p>
+</li>
+</ul>
+</li>
+<li><p>主流发行版本</p>
+<ul>
+<li>RedHat</li>
+<li>CentOS</li>
+<li>Ubuntu</li>
+<li>Debian</li>
+<li>Fedora</li>
+</ul>
+</li>
+</ol>
+<h2 id="Ch2-分区"><a href="#Ch2-分区" class="headerlink" title="Ch2 分区"></a>Ch2 分区</h2><ol>
+<li><p>默认创建的分区：&#x2F;分区、&#x2F;boot分区、swap分区</p>
+</li>
+<li><p>如何合理的配置分区？</p>
+<ul>
+<li><p>swap分区:建议为物理内存的1-2倍 </p>
+</li>
+<li><p>&#x2F;boot分区:用来存放与系统启动相关的程序，比如引导装载程序等，200M</p>
+</li>
+<li><p>&#x2F;分区:Linux系统根目录，所有目录都挂载在这个目录下 </p>
+</li>
+<li><p>&#x2F;usr:存放Linux系统中的应用程序及其相关数据（Unix Software Resource）</p>
+</li>
+<li><p>&#x2F;var:存放Linux系统中经常变化的数据以及日志文件 </p>
+</li>
+<li><p>&#x2F;home:存放普通用户用户数据，是普通用户的宿主目录</p>
+</li>
+</ul>
+</li>
+<li><p>什么是交换分区？</p>
+<ul>
+<li><p>直接从物理内存读写数据要比从硬盘读写数据快的多，而物理内存是有限的，这样就使用到了虚拟内存。虚拟内存是为了满足物理内存的不足而提出的一种策略，它是利用磁盘空间虚拟出的一块逻辑内存，用作虚拟内存的磁盘空间被称为交换分区（swap分区）。</p>
+</li>
+<li><p>内核会将暂时不用的内存块信息写到交换分区，这样一来，物理内存得到了释放，这块内存就可以用于其它用途，当需要用到原始的内容时，这些信息会被重新从交换分区读入物理内存。</p>
+</li>
+<li><p>Linux的内存管理采取的是分页存取机制，为了保证物理内存能得到充分的利用，内核会在适当的时候将物理内存中不经常使用的数据块自动交换到虚拟内存中，而将经常使用的信息保留到物理内存。</p>
+</li>
+<li><p>Linux系统会不时地进行页面交换操作，以保持尽可能多的空闲物理内存，即使并没有什么操作需要使用内存，Linux也会交换出暂时不用的内存页面，这可以避免等待交换所需的时间。</p>
+</li>
+<li><p>Linux进行页面交换是有条件的，不是所有页面在不用时都交换到虚拟内存，Linux内核根据“最近最常使用”算法，仅仅将一些不经常使用的页面文件交换到虚拟内存。</p>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="Ch3-字符界面"><a href="#Ch3-字符界面" class="headerlink" title="Ch3 字符界面"></a>Ch3 字符界面</h2><ol>
+<li><p>运行目标</p>
+<p><img src="https://s2.loli.net/2022/02/08/rb3mecguXOiJNTV.png" alt="image-20211212155353606">有许多种运行级别，可以设置开机时进入字符界面。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl get-default</span><br><span class="line">systemctl set-default multi-user.target</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>关机重启</p>
+<ul>
+<li>立即关闭 shutdown -h now </li>
+<li>定时关闭 shutdown -h +45</li>
+<li>警告重启 shutdown -r now “warning message”</li>
+<li>定时重启 shutdown -r 23:59 </li>
+<li>halt &#x3D;&#x3D; shutdown -h now</li>
+<li>reboot &#x3D;&#x3D; shutdown -r now</li>
+<li>取消关机 shutdown -c</li>
+</ul>
+</li>
+<li><p>bash常用的快捷键和特殊字符</p>
+<p>比较有用的一个：ctrl+r 向上搜素</p>
+<p><img src="https://s2.loli.net/2022/02/08/GQODr3SsuaEAbYw.png" alt="image-20211212160436640"></p>
+<p><img src="https://s2.loli.net/2022/02/08/ER9O8h2vPiJaulw.png" alt="image-20211212160448292"></p>
+</li>
+<li><p>命令相关</p>
+<ul>
+<li><p>历史记录  ~&#x2F;.bash_history</p>
+</li>
+<li><p>排列</p>
+<ul>
+<li>Command1;command2 不管1是否出错都执行2</li>
+<li>Command1&amp;&amp;command2 会有短路效应</li>
+</ul>
+</li>
+<li><p>替换</p>
+<ul>
+<li>&amp;()</li>
+</ul>
+<p>  kill -9 $(pidof less)</p>
+<ul>
+<li><p>&#96;&#96;</p>
+<p>kill -9 `pidof less`</p>
+</li>
+</ul>
+</li>
+<li><p>别名 alias xxx&#x3D;yyy    unalias xxx</p>
+</li>
+</ul>
+</li>
+<li><p>管道</p>
+<p>将某个命令的输出用作后续命令的输入，和上面的排列命令不一样。管道只接收standard output，忽略standard error信息。</p>
+<p><img src="https://s2.loli.net/2022/02/08/PZaUJtT4bBmxvCG.png" alt="image-20211212162419739"></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">[~/Desktop]$ </span><span class="language-bash"><span class="built_in">ls</span> ./ | less</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>重定向</p>
+<p>标准输入(键盘输入)、标准输出（输出到屏幕）、标准错误（也是输出到屏幕），它们分别对应的文件描述符是0，1，2 。定向都分为覆盖和追加两种方式。&#x2F;dev&#x2F;null无底洞，用于屏蔽输出。</p>
+<ul>
+<li><p>输出重定向</p>
+<ul>
+<li>&gt;</li>
+<li>&gt;&gt;</li>
+</ul>
+</li>
+<li><p>输入重定向</p>
+<ul>
+<li><p>&lt; 比如cat &lt; &#x2F;root&#x2F;mm</p>
+</li>
+<li><p>&lt;&lt; 特别注意，追加输入重定向，这种输入重定向告诉shell当前的标准输入来自命令行的一对分隔符之间的内容，这个分隔符一般为EOF。</p>
+<p>cat &gt;&gt; &#x2F;root&#x2F;bc &lt;&lt;EOF</p>
+<p>回车后会让用户输入，直到输入EOF才结束。每行内容都会追加写入到文件里。可以用来给配置文件追加写入，感觉比echo &gt;&gt;好用。</p>
+</li>
+</ul>
+</li>
+<li><p>错误重定向</p>
+<ul>
+<li>2&gt;</li>
+<li>2&gt;&gt;</li>
+</ul>
+</li>
+<li><p>输出+错误重定向</p>
+<ul>
+<li>&amp;&gt; file 把2和1都定向了</li>
+<li>command &gt;&gt; file 2&gt;&amp;1 也可以</li>
+<li>nohup sh command.sh &gt; logs.txt 2&gt;&amp;1 &amp; 这是一条经典的后台运行并把STDOUT和STDERR写到日志的命令 把2重定向到&amp;1 其中&amp;1又输到了logs.txt</li>
+<li>command &gt; &#x2F;dev&#x2F;null 2&gt;&amp;1 屏蔽输出</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Vim相关</p>
+<p><img src="https://s2.loli.net/2022/02/08/Zra2nf3oFcgqjPY.png" alt="image-20211212164728283"></p>
+<p>命令模式常用</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>i</td>
+<td>当前位置前插入</td>
+</tr>
+<tr>
+<td>a</td>
+<td>当前位置后插入</td>
+</tr>
+<tr>
+<td>kjhl</td>
+<td>上下左右移动</td>
+</tr>
+<tr>
+<td>n[kjhl]</td>
+<td>上下左右移动n行</td>
+</tr>
+<tr>
+<td>0</td>
+<td>行首</td>
+</tr>
+<tr>
+<td>$</td>
+<td>行尾</td>
+</tr>
+<tr>
+<td>gg</td>
+<td>文件首</td>
+</tr>
+<tr>
+<td>G</td>
+<td>文件尾</td>
+</tr>
+<tr>
+<td>nG</td>
+<td>跳转第n行行首</td>
+</tr>
+<tr>
+<td>x</td>
+<td>删除当前字符</td>
+</tr>
+<tr>
+<td>X</td>
+<td>删除当前字符的前一个字符</td>
+</tr>
+<tr>
+<td>dd</td>
+<td>删除光标所在行</td>
+</tr>
+<tr>
+<td>yy</td>
+<td>复制光标所在行</td>
+</tr>
+<tr>
+<td>p</td>
+<td>将缓冲区内的内容写到光标所在的位置</td>
+</tr>
+<tr>
+<td>u</td>
+<td>撤销</td>
+</tr>
+<tr>
+<td>&#x2F;keyword</td>
+<td>按n往后找 N往前找</td>
+</tr>
+<tr>
+<td>?keyword</td>
+<td>按n往前找 N往后找</td>
+</tr>
+</tbody></table>
+<p>末行模式常用</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>:w</td>
+<td>写</td>
+</tr>
+<tr>
+<td>:w filename</td>
+<td>写+另存为</td>
+</tr>
+<tr>
+<td>:wq</td>
+<td>写+退出</td>
+</tr>
+<tr>
+<td>:wq filename</td>
+<td>写+退出+另存为</td>
+</tr>
+<tr>
+<td>:x</td>
+<td>等同:wq!</td>
+</tr>
+<tr>
+<td>:n</td>
+<td>跳到第n行</td>
+</tr>
+<tr>
+<td>:set number</td>
+<td>显示行号</td>
+</tr>
+<tr>
+<td>:set nonumber</td>
+<td>不显示行号</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+<h2 id="Ch4-文件系统"><a href="#Ch4-文件系统" class="headerlink" title="Ch4 文件系统"></a>Ch4 文件系统</h2><ol>
+<li><p>文件类型</p>
+<ul>
+<li><p>普通文件 -</p>
+</li>
+<li><p>目录文件 d</p>
+</li>
+<li><p>设备文件 </p>
+<p>可以ls &#x2F;dev看看，全都是c和b开头的设备文件。</p>
+<ul>
+<li><p>字符设备文件 c</p>
+<p>随机读写，如磁盘</p>
+</li>
+<li><p>块设备文件 b</p>
+<p>接收字符流，如打印机、终端、&#x2F;dev&#x2F;null</p>
+</li>
+</ul>
+</li>
+<li><p>管道文件 p</p>
+<p>有时候也叫FIFO文件</p>
+</li>
+<li><p>链接文件 l</p>
+<p>在Linux中，内核为每个新创建的文件分类一个inode(索引节点号)，文件属性保存在索引节点中。软链接和源文件的inode号不一样，硬链接的inode号和源文件一样。删除源文件操作对硬链接无效。因为删除源文件相当于把源文件指向的真实地址的指针删除了，但是硬链接这边还有个指针指向真实地址。另：ls -l的第二列是文件的链接数。</p>
+<ul>
+<li><p>软链接</p>
+<p>又叫符号链接文件，相当于快捷方式。</p>
+<p>软链接可以给文件夹设置，但不可设置硬链接。</p>
+<p>软链接可以跨文件系统。</p>
+<p>软链接可以设置成不存在的文件。</p>
+</li>
+<li><p>硬链接</p>
+<p>读写删除和软链接一样，但是如果删除了链接到的源文件，而硬链接文件仍然存在，那系统就会忘记他是硬链接，就是个普通文件。</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>目录结构</p>
+</li>
+</ol>
+<p><img src="https://s2.loli.net/2022/02/08/5OpbSCtZGwaokDV.png" alt="image-20211212182457031"></p>
+<p><img src="https://s2.loli.net/2022/02/08/XZJ1SHhnaNfdgsp.png" alt="image-20211212182504774"></p>
+<ol start="3">
+<li>常用命令<ul>
+<li><p>ls</p>
+<p>-rw-r–r– 1 wwy staff   3B 12 12 18:42 file</p>
+<p>文件类型 用户所有者权限 组群所有者权限 其它用户权限 所有者 群组所有者 文件大小（注意不是文件磁盘占用量） 最后修改时间 文件名称</p>
+</li>
+<li><p>touch</p>
+<p>-c 默认情况下如果文件存在touch也会创文件而不会报错，此选项保证如果存在时候就不创建</p>
+<p>-t 指定创建时间  touch -t 11112359 file</p>
+</li>
+<li><p>cp</p>
+<p>注意下cp一个文件到一个不存在的目录的时候会被认为是改名</p>
+<p>-r 参数 文件夹</p>
+</li>
+<li><p>mv</p>
+</li>
+<li><p>rm</p>
+</li>
+<li><p>wc</p>
+<p>默认统计三个指标，行数、单词数、字符数</p>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="Ch5-文本与查找"><a href="#Ch5-文本与查找" class="headerlink" title="Ch5 文本与查找"></a>Ch5 文本与查找</h2><ol>
+<li><p>文本显示</p>
+<ul>
+<li>more 分页显示</li>
+<li>less 支持后退回卷</li>
+<li>head -n行数 -c字符数</li>
+<li>tail 同上</li>
+</ul>
+</li>
+<li><p>文本处理</p>
+<ul>
+<li><p>sort</p>
+<p>默认升序排序 -r参数逆序 注意这里只是输出到STDOUT并不会写入文件</p>
+</li>
+<li><p>uniq</p>
+<p>-d 查看重复的行</p>
+<p>-u 查看不重复的行</p>
+</li>
+<li><p>cut</p>
+<p>行按照分隔符切片并选择性输出</p>
+<p>-b 字节 </p>
+<p>-c 字符 </p>
+<p>-f 字段</p>
+<p>cut -f 1,5 -d: &#x2F;etc&#x2F;passwd</p>
+</li>
+<li><p>common</p>
+<p>逐行比较两个排过序的文件</p>
+<p>-1 不输出文件1特有的行</p>
+<p>-2 不输出文件2特有的行</p>
+<p>-3 不输出两个文件共有的行</p>
+<p>如果没有指定任何参数，comm命令读取这两个文件，然后输出三列:第 1列输出file1中特有的行;第2列输出file2中特有的行;第3列输出两 个文件中共有的行</p>
+</li>
+<li><p>diff</p>
+<p>不用排序直接比较两个文件 更常用</p>
+</li>
+</ul>
+</li>
+<li><p>查找字符串</p>
+<p>grep ‘balabala’ file.txt</p>
+<p>grep ‘balabala’ d*</p>
+<p>grep ^b file.txt</p>
+<p>grep -v ^b file.txt 这个-v是反选的意思</p>
+<p>grep end$ file.txt</p>
+<p>参考正则表达式</p>
+</li>
+<li><p>查找文件</p>
+<ul>
+<li><p>find</p>
+<p>列出文件系统内符合条件的文件</p>
+<p>find &#x2F;boot -name grub.cfg</p>
+<p>find &#x2F; -name ‘*.conf’</p>
+<p>find .&#x2F; -ctime -20</p>
+</li>
+<li><p>locate</p>
+<p>根据数据库去找文件 比较快 数据库由cron每天建立</p>
+</li>
+</ul>
+</li>
+<li><p>查看存储</p>
+<ul>
+<li><p>free</p>
+</li>
+<li><p>du</p>
+<p>显示文件磁盘占用量：直接du一个文件（注意小文件会直接显示4K，显示的不是文件大小）</p>
+<p>显示目录磁盘占用量：du -s （summary的意思）</p>
+</li>
+<li><p>df</p>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="Ch6-Shell命令"><a href="#Ch6-Shell命令" class="headerlink" title="Ch6 Shell命令"></a>Ch6 Shell命令</h2><h2 id="Ch7-用户和组群"><a href="#Ch7-用户和组群" class="headerlink" title="Ch7 用户和组群"></a>Ch7 用户和组群</h2><ol>
+<li><p>用户的增删改查(&#x2F;etc&#x2F;passwd    &#x2F;etc&#x2F;shadow)</p>
+<p>UID分配：</p>
+<ul>
+<li>0 &#x3D; root</li>
+<li>1~999 &#x3D; 系统用户</li>
+<li>1000 ~ 60000 普通用户</li>
+</ul>
+<p>useradd</p>
+<ul>
+<li>-u 指定uid</li>
+<li>-d 用户主目录</li>
+<li>-g 指定群组</li>
+<li>-s 指定shell</li>
+</ul>
+<p>usermod</p>
+<ul>
+<li>-e 修改过期时间</li>
+<li>-L 锁定</li>
+<li>-U 解锁</li>
+</ul>
+<p>userdel</p>
+<ul>
+<li>-r 彻底删除 用户文件也被删除</li>
+</ul>
+</li>
+<li><p>组群的增删改查( &#x2F;etc&#x2F;group    &#x2F;etc&#x2F;gshadow)</p>
+<p>groupadd</p>
+<ul>
+<li>-r 创建系统组群（gid&#x3D;1-999） </li>
+<li>-g 指定gid</li>
+</ul>
+<p>groupmod</p>
+<ul>
+<li>-n 修改组群名称</li>
+</ul>
+<p>groupdel</p>
+</li>
+<li><p>&#x2F;etc&#x2F;passwd &amp;&amp; &#x2F;etc&#x2F;shadow文件是什么</p>
+<p>shadow和passwd是互补的文件，shadow包括了加密后的密码（如果没密码就是!!）和有效期等非常机密的信息，不可以被其它任何用户可读。</p>
+</li>
+<li><p>关于命令执行权限那些事儿</p>
+<p>id命令查看UID和GIDs</p>
+<p>su命令切换用户 输入需切换的用户的密码 加 - 表示当前目录也要切过去</p>
+<p>sudo命令以root用户权限执行命令 输入自己的密码</p>
+<p>参考<a target="_blank" rel="noopener" href="https://sysin.org/blog/linux-root/">https://sysin.org/blog/linux-root/</a></p>
+</li>
+</ol>
+<h2 id="Ch8-磁盘分区和文件系统管理"><a href="#Ch8-磁盘分区和文件系统管理" class="headerlink" title="Ch8 磁盘分区和文件系统管理"></a>Ch8 磁盘分区和文件系统管理</h2><ol>
+<li><p>分区</p>
+<p>MBR&#x3D;fdisk</p>
+<p>GPT&#x3D;gdisk</p>
+<p><img src="https://s2.loli.net/2022/02/08/5VTOB7JqEki9PoC.png" alt="image-20211212224910590"></p>
+<p>fdisk -l &#x2F;dev&#x2F;vda</p>
+<p><strong>Device</strong>   <strong>Boot</strong> <strong>Start</strong>    <strong>End</strong>  <strong>Sectors</strong> <strong>Size</strong> <strong>Id</strong> <strong>Type</strong></p>
+<p>&#x2F;dev&#x2F;vda1 *   2048 419430366 419428319 200G 83 Linux</p>
+<p>最后两个表示分区的类型</p>
+<ul>
+<li>83&#x3D;普通Linux分区</li>
+<li>fd&#x3D;RAID使用的分区</li>
+<li>8e&#x3D;LVM使用的分区</li>
+<li>82&#x3D;swap分区</li>
+</ul>
+</li>
+<li><p>格式化（创建文件系统）</p>
+<p>主流的文件系统xfs ext4</p>
+<p>mkfs可以在分区上创建文件系统</p>
+<p>mkfs -t ext4 &#x2F;dev&#x2F;vda1</p>
+</li>
+<li><p>挂载&#x2F;卸载文件系统</p>
+<ul>
+<li>mount -o ro &#x2F;dev&#x2F;vda1 &#x2F;mnt&#x2F;ab 只读</li>
+<li>mount -o rw &#x2F;dev&#x2F;vda1 &#x2F;mnt&#x2F;ab 读写</li>
+<li>unmount &#x2F;dev&#x2F;vda1 卸载文件系统</li>
+</ul>
+</li>
+<li><p>开机自动挂载</p>
+<p>通过修改&#x2F;etc&#x2F;fstab实现</p>
+<p>&#x2F;dev&#x2F;vda1 &#x2F;mnt&#x2F;ab ext4 defaults 1 2</p>
+<p>最后三个为挂载类型、是否备份、是否fsck检查</p>
+</li>
+<li><p>使用swap</p>
+<ul>
+<li><p>swap分区</p>
+<p>mkswap &#x2F;dev&#x2F;sda5</p>
+<p>swapon &#x2F;dev&#x2F;sda5</p>
+<p>cat &#x2F;proc&#x2F;swaps 即可查看所有swap的分区</p>
+<p>&#x2F;dev&#x2F;sda5 swap swap defaults 0 0 开机自挂载</p>
+</li>
+<li><p>swap文件</p>
+<p>dd if&#x3D;&#x2F;dev&#x2F;zero of&#x3D;&#x2F;swapfile bs&#x3D;1024 count&#x3D;66536</p>
+<p>创建了一个68132864字节(68 MB)的swapfile</p>
+<p>mkswap &#x2F;swapfile</p>
+<p>swapon &#x2F;swapfile</p>
+<p>挂载等等步骤都是和swap分区一样的</p>
+</li>
+</ul>
+<p>关于swap的文章：<a target="_blank" rel="noopener" href="https://draveness.me/whys-the-design-linux-swapping/">https://draveness.me/whys-the-design-linux-swapping/</a></p>
+</li>
+</ol>
+<h2 id="Ch9-安装软件"><a href="#Ch9-安装软件" class="headerlink" title="Ch9 安装软件"></a>Ch9 安装软件</h2><ol>
+<li><p>rpm相关</p>
+<ul>
+<li>-ivh 安装</li>
+<li>-e 卸载</li>
+<li>-Fvh 刷新（不会安装）</li>
+<li>-Uvh 升级（删除+安装）</li>
+<li>-q [package_name]查询是否安装了包</li>
+<li>-qa 查询所有安装包</li>
+<li>-qi [package_name] 查询包的描述信息</li>
+<li>-ql [package_name] 查询包的文件列表</li>
+<li>-qR [package_name] 查询包的依赖关系</li>
+</ul>
+</li>
+<li><p>yum相关</p>
+<ul>
+<li>install</li>
+<li>remove</li>
+<li>update</li>
+<li>info</li>
+<li>deplist</li>
+</ul>
+</li>
+<li><p>tar相关</p>
+<ul>
+<li><p>-C 解压到指定路径</p>
+</li>
+<li><p>-cvf 打包</p>
+</li>
+<li><p>-tvf 查看包内容</p>
+</li>
+<li><p>-xvf 解包</p>
+</li>
+<li><p>-rvf 添加文件到tar包（避免重新打包）</p>
+</li>
+<li><p>调用压缩算法</p>
+<ul>
+<li>-z 对应.gz</li>
+<li>-j 对应.bz2</li>
+<li>-J 对应.xz</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="Ch10-权限"><a href="#Ch10-权限" class="headerlink" title="Ch10 权限"></a>Ch10 权限</h2><ol>
+<li><p>权限的设置 </p>
+<ul>
+<li><p>字符法</p>
+<p>chmod u+rw,g+r,o+rwx file</p>
+<p>操作对象：</p>
+<ul>
+<li>u owner自己</li>
+<li>g 同组群GID用户</li>
+<li>o 其它人</li>
+<li>a 所有人 这个并不显式的体现在ls -l的文件权限里</li>
+</ul>
+<p>操作符号：</p>
+<ul>
+<li><ul>
+<li></li>
+</ul>
+</li>
+<li><ul>
+<li></li>
+</ul>
+</li>
+<li>&#x3D; 直接赋予给定权限</li>
+</ul>
+<p>权限：</p>
+<ul>
+<li>r 读</li>
+<li>w 写</li>
+<li>x 执行</li>
+</ul>
+</li>
+<li><p>数字法</p>
+<p>chmod 7 a &#x3D;&#x3D; chmod 007 a 只有一个数字意味着前两个权限补0</p>
+<p>-R 代表把目录中的文件和子目录也设置成一样的权限</p>
+<p>用三个数字按顺序代表ugo的权限 数字的来源是操作权限对应的加和</p>
+<ul>
+<li>r 4</li>
+<li>w 2 </li>
+<li>x 1 </li>
+<li>- 0</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>特殊权限</p>
+<ul>
+<li><p>SUID</p>
+<ul>
+<li>对可执行文件：不是以发起者身份来获取资源，而是以可执行文件的用户所有者身份来执行。</li>
+<li>对目录：无影响</li>
+</ul>
+</li>
+<li><p>SGID</p>
+<ul>
+<li>对可执行文件：不是以发起者身份来获取资源，而是以可执行文件的组群所有者身份来执行。</li>
+<li>对目录：在该目录中创建的任意新文件的所属组与该目录的所属组相同。</li>
+</ul>
+</li>
+<li><p>Sticky</p>
+<ul>
+<li>对可执行文件：无影响</li>
+<li>对目录：设置Sticky之后，尽管其它用户有写权限，也必须由文件所有者执行删除和移动等操作。</li>
+</ul>
+<p>设置特殊权限也有字符法和数字法两种：</p>
+<ul>
+<li><p>字符法</p>
+<p><img src="https://s2.loli.net/2022/02/08/VErxweXTzRkmb6K.png" alt="image-20211213111003856"></p>
+</li>
+<li><p>数字法</p>
+<p>如果要设置特殊权限，就必须使用四位数字才能表示。</p>
+<p>SUID:4;</p>
+<p>SGID:2;</p>
+<p>Sticky:1</p>
+<p>设置file具有SUID，SGID和Sticky权限 &#x3D; chmod 7000 file</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>修改文件拥有者</p>
+<p> chown [选项] [用户.组群] [文件|目录] </p>
+<p> chown [选项] [用户:组群] [文件|目录]</p>
+<p> 将文件a的用户组改成newuser：</p>
+<ul>
+<li>chown :newuser a</li>
+<li>chown .newuser a</li>
+</ul>
+<p> 将文件a的所有者和用户组一起改成root：</p>
+<ul>
+<li>chown root.root a</li>
+</ul>
+<p> 将目录&#x2F;root&#x2F;b连同它的下级文件&#x2F;root&#x2F;b&#x2F;ccc的所有者和用户 组一起更改为newuser：</p>
+<ul>
+<li>chown -R newuser.newuser &#x2F;root&#x2F;b</li>
+</ul>
+</li>
+</ol>
+<h2 id="Ch11-进程、任务计划、启动过程"><a href="#Ch11-进程、任务计划、启动过程" class="headerlink" title="Ch11 进程、任务计划、启动过程"></a>Ch11 进程、任务计划、启动过程</h2><ol>
+<li><p>进程管理</p>
+<ul>
+<li>ps -ef 和 ps -aux是两种显示风格的命令</li>
+</ul>
+<p><img src="https://s2.loli.net/2022/02/08/E4iSvJampO2RlUN.png" alt="image-20211213123639696"></p>
+<ul>
+<li><p>top和htop相关</p>
+<p>参考资料<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/6e9b0cc7f348">https://www.jianshu.com/p/6e9b0cc7f348</a></p>
+</li>
+<li><p>kill进程</p>
+<p>kill命令是给进程发送signal并不是杀进程，默认发15信号，告诉进程需要被关闭，请自行停止运行并退出。指定9信号可以立即退出。</p>
+</li>
+</ul>
+</li>
+<li><p>crontab</p>
+<p>格式：minute hour day month dayofweek username commands</p>
+<p><img src="https://s2.loli.net/2022/02/08/JNwB8VPxmX9zaUu.png" alt="image-20211213124646951"></p>
+<p>举个例子：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">45 4 1,10,22 * * root /root/backup.sh </span><br><span class="line">//每月1、10、22日的4:45执行/root/backup.sh文件</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>root用户：修改&#x2F;etc&#x2F;crontab 或 &#x2F;etc&#x2F;cron.d目录下创建文件</p>
+</li>
+<li><p>普通用户：crontab命令</p>
+<ul>
+<li><p>编辑用户的crontab:crontab -e (文件保存在&#x2F;var&#x2F;spool&#x2F;cron下，文件名为用户名) </p>
+</li>
+<li><p>列出用户的crontab:crontab (-u username) -l</p>
+</li>
+<li><p>删除crontab:crontab (-u username) -r</p>
+</li>
+<li><p>恢复crontab文件:crontab (-u username)</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>启动过程</p>
+<p>主要把握控制权的转交流程：</p>
+<blockquote>
+<p>硬件bios -&gt; 启动顺序第一的硬盘的第一个扇区 -&gt; 激活分区或者GRUB2 -&gt; 真正的内核</p>
+</blockquote>
+<ul>
+<li><p>BIOS自检 </p>
+<p>根据BIOS的启动顺序，把控制权转交给排在第一位的储存设备。</p>
+<p>这时，计算机读取该设备的第一个扇区，也就是读取最前面的512个字节。如果这512个字节的最后两个字节是0x55和0xAA，表明这个设备可以用于启动；如果不是，表明设备不能用于启动，控制权于是被转交给”启动顺序”中的下一个设备。</p>
+<p>这最前面的512个字节，就叫做”主引导记录”（Master boot record，缩写为MBR）。</p>
+<p><img src="https://s2.loli.net/2022/02/08/hmHObN6PrLyzVFI.png" alt="image-20211213130156652"></p>
+</li>
+<li><p>硬盘可能存在分区，有可能根据当前激活分区转给447字节开始的分区表来执行对应激活分区的内容以启动计算机。但主流情况下，计算机读取”主引导记录”前面446字节的机器码之后，不再把控制权转交给某一个分区，而是运行事先安装的”启动管理器”（bootloader），常见的就是GRUB2。由用户选择启动哪一个操作系统。后面计算机控制权转交给内核。</p>
+</li>
+<li><p>加载内核到内存</p>
+<ul>
+<li><p>内核启动后执行四项工作</p>
+<ul>
+<li><p>检测所有硬件</p>
+</li>
+<li><p>驱动硬件</p>
+</li>
+<li><p>以只读方式挂载根文件系统</p>
+</li>
+<li><p>启动systemd服务</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>执行systemd进程</p>
+<ul>
+<li><p>systemd进程是系统所有进程的起点，有两个作用</p>
+</li>
+<li><p>扮演终极父进程</p>
+</li>
+<li><p>进入某个特定系统运行目标的服务启动集合（default.target）</p>
+</li>
+</ul>
+</li>
+<li><p>初始化系统环境</p>
+<p>使用系统运行目标来处理引导和服务管理过程 </p>
+</li>
+<li><p>执行&#x2F;bin&#x2F;login</p>
+</li>
+</ul>
+<p>关于计算机和Linux的启动：</p>
+<p><a target="_blank" rel="noopener" href="https://www.ruanyifeng.com/blog/2013/02/booting.html">https://www.ruanyifeng.com/blog/2013/02/booting.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.ruanyifeng.com/blog/2013/08/linux_boot_process.html">https://www.ruanyifeng.com/blog/2013/08/linux_boot_process.html</a></p>
+</li>
+</ol>
+<h2 id="Ch12-网络配置、systemd"><a href="#Ch12-网络配置、systemd" class="headerlink" title="Ch12 网络配置、systemd"></a>Ch12 网络配置、systemd</h2><ol>
+<li><p>网络配置文件</p>
+<ul>
+<li><p>网络设备的配置文件:&#x2F;etc&#x2F;sysconfig&#x2F;network-script </p>
+</li>
+<li><p>域名解析器使用的配置文件:&#x2F;etc&#x2F;resolv.conf </p>
+</li>
+<li><p>在可以查询DNS之前，存放主机名到IP地址的映射:&#x2F;etc&#x2F;hosts </p>
+</li>
+<li><p>定义了所有的服务名称、协议类型、服务端口:&#x2F;etc&#x2F;services</p>
+</li>
+</ul>
+</li>
+<li><p>网络常用命令</p>
+<ul>
+<li><p>ping</p>
+<p>-s size 数据包bytes大小</p>
+</li>
+<li><p>traceroute</p>
+</li>
+<li><p>ifconfig</p>
+<p>hw ether更改mac</p>
+<p>netmask 更改掩码</p>
+<p>up down 控制接口开闭</p>
+<p>ifconfig eth0 192.168.0.100 netmask 255.255.255.0 up</p>
+</li>
+<li><p>netstat</p>
+<p>-r 显示路由表</p>
+</li>
+<li><p>arp</p>
+<p>-a 所有</p>
+<p>-s 新增</p>
+<p>-d 删除</p>
+</li>
+</ul>
+<p>关于查看端口占用：<a target="_blank" rel="noopener" href="https://www.runoob.com/w3cnote/linux-check-port-usage.html">https://www.runoob.com/w3cnote/linux-check-port-usage.html</a></p>
+</li>
+<li><p>systemd</p>
+<p>原先是由System V通过 &#x2F;etc&#x2F;rc.d&#x2F;init.d目录下的Shell脚本来执行服务管理。在systemd中，服 务、设备、挂载等资源统一被称为单元，所以 systemd中有许多单元类型，服务单元文件的扩展 名是.service</p>
+<p>举个例子：启动named服务 &#x3D;&#x3D; systemctl start named.service</p>
+<p>systemctl常用参数：</p>
+<ul>
+<li><p>start</p>
+</li>
+<li><p>stop</p>
+</li>
+<li><p>restart</p>
+</li>
+<li><p>reload</p>
+</li>
+<li><p>enable:开机自启</p>
+</li>
+<li><p>disable:取消开机自启 is-enable:是否开机自启 status:查看服务状态</p>
+</li>
+<li><p>list-unit –type&#x3D;service:查看所有已启动服务</p>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="Ch13-远程连接配置"><a href="#Ch13-远程连接配置" class="headerlink" title="Ch13 远程连接配置"></a>Ch13 远程连接配置</h2><ol>
+<li><p>一些知识点</p>
+<ul>
+<li><p>OpenSSH是SSH协议的免费开源实现</p>
+</li>
+<li><p>ftp和telnet因为明文所以不安全</p>
+</li>
+<li><p>OpenSSH的配置文件&#x2F;etc&#x2F;ssh&#x2F;sshd_config</p>
+<ul>
+<li>PermitEmptyPasswords no</li>
+<li>PermitRootLogin yes</li>
+<li>Port 22</li>
+</ul>
+</li>
+<li><p>scp -r .&#x2F;dir <a href="mailto:&#x72;&#x6f;&#111;&#116;&#64;&#x31;&#x2e;&#x31;&#x2e;&#49;&#46;&#49;">&#x72;&#x6f;&#111;&#116;&#64;&#x31;&#x2e;&#x31;&#x2e;&#49;&#46;&#49;</a>:&#x2F;temp 参考cp命令</p>
+</li>
+<li><p>ssh-genkey生成id_rsa &amp; id_rsa.pub</p>
+</li>
+<li><p>什么是know_hosts</p>
+<p>A通过ssh首次连接到B，B会将公钥1（host key）传递给A，A将公钥1存入known_hosts文件中，以后A再连接B时，B依然会传递给A一个公钥2，OpenSSH会核对公钥，通过对比公钥1与公钥2 是否相同来进行简单的验证，如果公钥不同，OpenSSH会发出警告， 避免受到DNS Hijack之类的攻击。所以当ECS重置系统之后可能会因为这个报连接错误。</p>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="Ch14-NFS服务器配置"><a href="#Ch14-NFS服务器配置" class="headerlink" title="Ch14 NFS服务器配置"></a>Ch14 NFS服务器配置</h2><ol>
+<li><p>NFS vs FTP</p>
+<p>FTP在修改数据文件时是需要首先获得一个文件的副本，NFS允许应用进程打开一个远地文件，并能够在该文件中某一个特定位置上开始读写数据。NFS没有鉴权机制，通过指定IP和域名来做访问限制。</p>
+</li>
+<li><p>&#x2F;etc&#x2F;exports文件控制着NFS服务器要导出的共享目录以及访问控制。&#x2F;etc&#x2F;exports文件默认是空白的，没有任何内容。也就是说NFS服务器默认是不共享任何目录，需要手工编辑添加。</p>
+<p>举个例子：&#x2F;it 192.168.0.5(ro,sync) </p>
+<p>意味着允许来自主机192.168.0.5的用户以默认的只读权限来挂载&#x2F;it目录。</p>
+</li>
+<li><p>使用</p>
+<ul>
+<li>启动NFS服务：systemctl start nfs-server.service</li>
+<li>挂载：mount 192.168.0.100:&#x2F;it &#x2F;mnt&#x2F;it</li>
+<li>开机自挂载：192.168.0.100:&#x2F;it &#x2F;mnt&#x2F;it nfs defaults 0 0添加到&#x2F;etc&#x2F;fstab</li>
+</ul>
+</li>
+</ol>
+<h2 id="Ch15-LVM"><a href="#Ch15-LVM" class="headerlink" title="Ch15 LVM"></a>Ch15 LVM</h2><ol>
+<li><p>辨析概念</p>
+<p><img src="https://s2.loli.net/2022/02/08/BocSej9bkHpmvls.png" alt="image-20211213141400030"></p>
+<ul>
+<li>PV physical volume</li>
+<li>VG volume group</li>
+<li>LV logical volume</li>
+</ul>
+</li>
+<li><p>相关命令</p>
+<p><img src="https://s2.loli.net/2022/02/08/HGtV8YhcKX5STQF.png" alt="image-20211213141533957"></p>
+</li>
+</ol>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Ch1-%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5"><span class="toc-number">1.</span> <span class="toc-text">Ch1 基础概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ch2-%E5%88%86%E5%8C%BA"><span class="toc-number">2.</span> <span class="toc-text">Ch2 分区</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ch3-%E5%AD%97%E7%AC%A6%E7%95%8C%E9%9D%A2"><span class="toc-number">3.</span> <span class="toc-text">Ch3 字符界面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ch4-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F"><span class="toc-number">4.</span> <span class="toc-text">Ch4 文件系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ch5-%E6%96%87%E6%9C%AC%E4%B8%8E%E6%9F%A5%E6%89%BE"><span class="toc-number">5.</span> <span class="toc-text">Ch5 文本与查找</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ch6-Shell%E5%91%BD%E4%BB%A4"><span class="toc-number">6.</span> <span class="toc-text">Ch6 Shell命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ch7-%E7%94%A8%E6%88%B7%E5%92%8C%E7%BB%84%E7%BE%A4"><span class="toc-number">7.</span> <span class="toc-text">Ch7 用户和组群</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ch8-%E7%A3%81%E7%9B%98%E5%88%86%E5%8C%BA%E5%92%8C%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86"><span class="toc-number">8.</span> <span class="toc-text">Ch8 磁盘分区和文件系统管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ch9-%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6"><span class="toc-number">9.</span> <span class="toc-text">Ch9 安装软件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ch10-%E6%9D%83%E9%99%90"><span class="toc-number">10.</span> <span class="toc-text">Ch10 权限</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ch11-%E8%BF%9B%E7%A8%8B%E3%80%81%E4%BB%BB%E5%8A%A1%E8%AE%A1%E5%88%92%E3%80%81%E5%90%AF%E5%8A%A8%E8%BF%87%E7%A8%8B"><span class="toc-number">11.</span> <span class="toc-text">Ch11 进程、任务计划、启动过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ch12-%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE%E3%80%81systemd"><span class="toc-number">12.</span> <span class="toc-text">Ch12 网络配置、systemd</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ch13-%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E9%85%8D%E7%BD%AE"><span class="toc-number">13.</span> <span class="toc-text">Ch13 远程连接配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ch14-NFS%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AE"><span class="toc-number">14.</span> <span class="toc-text">Ch14 NFS服务器配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ch15-LVM"><span class="toc-number">15.</span> <span class="toc-text">Ch15 LVM</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2022/02/08/linux/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2022/02/08/linux/&text=Linux常用知识"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2022/02/08/linux/&title=Linux常用知识"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2022/02/08/linux/&is_video=false&description=Linux常用知识"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Linux常用知识&body=Check out this article: http://example.com/2022/02/08/linux/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2022/02/08/linux/&title=Linux常用知识"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2022/02/08/linux/&title=Linux常用知识"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2022/02/08/linux/&title=Linux常用知识"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2022/02/08/linux/&title=Linux常用知识"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2022/02/08/linux/&name=Linux常用知识&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2022/02/08/linux/&t=Linux常用知识"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2017-2022
+    Wang Wenyu
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
