@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="[toc] Redis五种基本数据结构+三种新数据结构str set zset list hash sds的结构和特点？成员变量：len + alloc + flags + buf[]  len保存了字符串长度，避免了C原生字符串的遍历求长度。  alloc保存了已分配的内存空间，不足时会自动扩展防止缓冲区溢出异常。  flags保存了SDS的类型，为不同长度的SDS定义了不同长度的len和all">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Redis相关总结">
+<meta property="og:url" content="http://example.com/2022/02/22/Redis/index.html">
+<meta property="og:site_name" content="WangWenyu&#39;s Site">
+<meta property="og:description" content="[toc] Redis五种基本数据结构+三种新数据结构str set zset list hash sds的结构和特点？成员变量：len + alloc + flags + buf[]  len保存了字符串长度，避免了C原生字符串的遍历求长度。  alloc保存了已分配的内存空间，不足时会自动扩展防止缓冲区溢出异常。  flags保存了SDS的类型，为不同长度的SDS定义了不同长度的len和all">
+<meta property="og:locale">
+<meta property="og:image" content="https://s2.loli.net/2022/02/22/ZMjubSAHd3o6JeG.png">
+<meta property="article:published_time" content="2022-02-22T14:15:23.000Z">
+<meta property="article:modified_time" content="2022-02-22T14:15:29.034Z">
+<meta property="article:author" content="Wang Wenyu">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2022/02/22/ZMjubSAHd3o6JeG.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Redis相关总结</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2022/02/08/linux/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2022/02/22/Redis/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2022/02/22/Redis/&text=Redis相关总结"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2022/02/22/Redis/&title=Redis相关总结"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2022/02/22/Redis/&is_video=false&description=Redis相关总结"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Redis相关总结&body=Check out this article: http://example.com/2022/02/22/Redis/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2022/02/22/Redis/&title=Redis相关总结"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2022/02/22/Redis/&title=Redis相关总结"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2022/02/22/Redis/&title=Redis相关总结"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2022/02/22/Redis/&title=Redis相关总结"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2022/02/22/Redis/&name=Redis相关总结&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2022/02/22/Redis/&t=Redis相关总结"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis%E4%BA%94%E7%A7%8D%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E4%B8%89%E7%A7%8D%E6%96%B0%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-number">1.</span> <span class="toc-text">Redis五种基本数据结构+三种新数据结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sds%E7%9A%84%E7%BB%93%E6%9E%84%E5%92%8C%E7%89%B9%E7%82%B9%EF%BC%9F"><span class="toc-number">2.</span> <span class="toc-text">sds的结构和特点？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#zset%E7%9A%84%E7%BB%93%E6%9E%84%E5%92%8C%E7%89%B9%E7%82%B9%EF%BC%9F"><span class="toc-number">3.</span> <span class="toc-text">zset的结构和特点？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis-%E6%8C%81%E4%B9%85%E5%8C%96%E4%B8%AD-RDB-%E4%BB%A5%E5%8F%8A-AOF-%E6%96%B9%E6%A1%88%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="toc-number">4.</span> <span class="toc-text">Redis 持久化中 RDB 以及 AOF 方案的优缺点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis%E4%B8%BA%E4%BB%80%E4%B9%88%E5%BF%AB%EF%BC%9F"><span class="toc-number">5.</span> <span class="toc-text">Redis为什么快？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis%E7%BC%93%E5%AD%98%E5%88%A0%E9%99%A4%E7%AD%96%E7%95%A5-%E6%B7%98%E6%B1%B0%E7%AD%96%E7%95%A5%EF%BC%9F"><span class="toc-number">6.</span> <span class="toc-text">Redis缓存删除策略+淘汰策略？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis%E9%99%A4%E4%BA%86%E9%94%AE%E5%80%BC%E5%AF%B9%E5%AD%98%E5%82%A8%E4%BB%A5%E5%A4%96%E7%9A%84%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF%EF%BC%9F"><span class="toc-number">7.</span> <span class="toc-text">Redis除了键值对存储以外的使用场景？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis-%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81"><span class="toc-number">8.</span> <span class="toc-text">Redis 如何实现分布式锁</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%93%E5%AD%98%E9%9B%AA%E5%B4%A9-%E7%BC%93%E5%AD%98%E5%87%BB%E7%A9%BF-%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F%EF%BC%9F"><span class="toc-number">9.</span> <span class="toc-text">缓存雪崩+缓存击穿+缓存穿透？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%93%E5%AD%98%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E4%B8%80%E8%87%B4%E6%80%A7%EF%BC%9F"><span class="toc-number">10.</span> <span class="toc-text">缓存和数据库的一致性？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis%E7%9A%84%E5%8D%95%E6%9C%BA%E3%80%81%E4%B8%BB%E4%BB%8E%E3%80%81Sentinel%E3%80%81Cluster"><span class="toc-number">11.</span> <span class="toc-text">Redis的单机、主从、Sentinel、Cluster</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Redis相关总结
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Wang Wenyu</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2022-02-22T14:15:23.000Z" itemprop="datePublished">2022-02-22</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/">知识总结</a>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>[toc]</p>
+<h2 id="Redis五种基本数据结构-三种新数据结构"><a href="#Redis五种基本数据结构-三种新数据结构" class="headerlink" title="Redis五种基本数据结构+三种新数据结构"></a>Redis五种基本数据结构+三种新数据结构</h2><p>str set zset list hash</p>
+<h2 id="sds的结构和特点？"><a href="#sds的结构和特点？" class="headerlink" title="sds的结构和特点？"></a>sds的结构和特点？</h2><p>成员变量：len + alloc + flags + buf[]</p>
+<ul>
+<li><p>len保存了字符串长度，避免了C原生字符串的遍历求长度。</p>
+</li>
+<li><p>alloc保存了已分配的内存空间，不足时会自动扩展防止缓冲区溢出异常。</p>
+</li>
+<li><p>flags保存了SDS的类型，为不同长度的SDS定义了不同长度的len和alloc以减少内存消耗，同时做了结构体对齐优化减少内存消耗。</p>
+</li>
+<li><p>buf[]保存了字符数组，保证了二进制安全，同时结尾补\0兼容了C原生字符串的API。</p>
+</li>
+</ul>
+<h2 id="zset的结构和特点？"><a href="#zset的结构和特点？" class="headerlink" title="zset的结构和特点？"></a>zset的结构和特点？</h2><p>zset采用了哈希表和跳表两种底层数据结构，同时支持点查和范围查。</p>
+<p>跳表支持平均 O(logN) 复杂度的节点查找。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">zskiplistNode</span> &#123;</span> </span><br><span class="line"><span class="comment">//Zset 对象的元素值</span></span><br><span class="line">				sds ele;</span><br><span class="line"><span class="comment">//元素权重值</span></span><br><span class="line">				<span class="type">double</span> score;</span><br><span class="line"><span class="comment">//后向指针</span></span><br><span class="line">				<span class="class"><span class="keyword">struct</span> <span class="title">zskiplistNode</span> *<span class="title">backward</span>;</span></span><br><span class="line"><span class="comment">//节点的level数组，保存每层上的前向指针和跨度</span></span><br><span class="line">				<span class="class"><span class="keyword">struct</span> <span class="title">zskiplistLevel</span> &#123;</span></span><br><span class="line">         			<span class="class"><span class="keyword">struct</span> <span class="title">zskiplistNode</span> *<span class="title">forward</span>;</span></span><br><span class="line">         			<span class="type">unsigned</span> <span class="type">long</span> span;</span><br><span class="line">     		&#125; level[];</span><br><span class="line">&#125; zskiplistNode;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2022/02/22/ZMjubSAHd3o6JeG.png">   </p>
+<h2 id="Redis-持久化中-RDB-以及-AOF-方案的优缺点"><a href="#Redis-持久化中-RDB-以及-AOF-方案的优缺点" class="headerlink" title="Redis 持久化中 RDB 以及 AOF 方案的优缺点"></a>Redis 持久化中 RDB 以及 AOF 方案的优缺点</h2><p>RDB是全量备份，.rdb文件。用COW机制去fork出一个子进程去进行备份的操作，主进程只负责响应请求。首先，备份的时候不能不用COW全量复制，否则会**<u>造成大量内存数据的复制</u>**，如果不fork那么就会阻塞所有写请求以保证备份时刻的值不被改变，<u><strong>主进程不能接受写请求</strong>了</u>。COW机制解决了这两点，COW会将主进程要修改的数据复制一份给子进程后，再进行修改，未修改的值还是共享内存。</p>
+<p>AOF是增量备份，append-only-file，策略可以每次写刷一次日志或者每隔几秒刷一次日志，丢的数据少。类似于binlog，只记录set和del操作，不记录get操作。AOF的体积通常比较大而且恢复起来也慢，但是AOF发生故障时丢的数据少。</p>
+<p>无论如何都可能有数据丢失，也可以模仿redolog和binlog的形式去保证Redis的强可靠，但是没有必要缓存本就应该允许丢失。</p>
+<h2 id="Redis为什么快？"><a href="#Redis为什么快？" class="headerlink" title="Redis为什么快？"></a>Redis为什么快？</h2><ul>
+<li>基于内存，引出存储器金字塔结构。</li>
+<li>单线程+IO多路复用，先引出CPU不是瓶颈不需要多线程，再引出select poll epoll。</li>
+<li>纯C编写，贴近底层。</li>
+</ul>
+<h2 id="Redis缓存删除策略-淘汰策略？"><a href="#Redis缓存删除策略-淘汰策略？" class="headerlink" title="Redis缓存删除策略+淘汰策略？"></a>Redis缓存删除策略+淘汰策略？</h2><p>删除策略：</p>
+<ul>
+<li>惰性删除，get的时候检查是否过期。</li>
+<li>定期删除，每隔一段时间抽样一批key进行删除。</li>
+</ul>
+<p>淘汰策略：</p>
+<ul>
+<li>volatile lru</li>
+<li>volatile ttl （不同于LRU，TTL算法是淘汰即将过期的数据）</li>
+<li>volatile random</li>
+<li>Allkeys lru</li>
+<li>allkeys random</li>
+<li>Refuse 拒绝写入直接报错</li>
+</ul>
+<h2 id="Redis除了键值对存储以外的使用场景？"><a href="#Redis除了键值对存储以外的使用场景？" class="headerlink" title="Redis除了键值对存储以外的使用场景？"></a>Redis除了键值对存储以外的使用场景？</h2><ul>
+<li>分布式锁</li>
+<li>限流</li>
+<li>消息队列</li>
+</ul>
+<h2 id="Redis-如何实现分布式锁"><a href="#Redis-如何实现分布式锁" class="headerlink" title="Redis 如何实现分布式锁"></a>Redis 如何实现分布式锁</h2><p>主要靠SETNX命令 需要原子操作的地方配合LUA脚本即可 </p>
+<p>存在一些坑如：无法正确释放锁、释放别人的锁等等</p>
+<p>分布式锁这块的可以参考这篇文章<a target="_blank" rel="noopener" href="http://kaito-kidd.com/2021/06/08/is-redis-distributed-lock-really-safe/">http://kaito-kidd.com/2021/06/08/is-redis-distributed-lock-really-safe/</a></p>
+<h2 id="缓存雪崩-缓存击穿-缓存穿透？"><a href="#缓存雪崩-缓存击穿-缓存穿透？" class="headerlink" title="缓存雪崩+缓存击穿+缓存穿透？"></a>缓存雪崩+缓存击穿+缓存穿透？</h2><p>雪崩（同一时间大面积失效）</p>
+<ul>
+<li>随机失效时间</li>
+<li>高可用机制保障不会出现大面积缓存失效</li>
+</ul>
+<p>击穿（指key失效后的瞬间大量请求落到数据库）</p>
+<ul>
+<li>给请求加锁，第一个请求从数据库取到数据后更新缓存，第二个及以后的数据全部从缓存取数据。</li>
+</ul>
+<p>穿透（指大量key无法命中缓存）</p>
+<ul>
+<li>做key校验，保证key是有意义的。比如时间校验。</li>
+<li>布隆过滤器，说你不存在就不存在的。把所有可能的key放到布隆过滤器中。</li>
+<li>缓存无效key</li>
+</ul>
+<h2 id="缓存和数据库的一致性？"><a href="#缓存和数据库的一致性？" class="headerlink" title="缓存和数据库的一致性？"></a>缓存和数据库的一致性？</h2><p>先更新缓存，后更新数据库 || 先更新数据库，后更新缓存</p>
+<p>无论两者中的哪一种，都能大概率保证数据一致性，但是其中某个操作失败的时候就会带来问题。</p>
+<p>如果后更新的数据库失败了，那么缓存失效后，数据会变回去；如果后更新的缓存失败了，直到key过期前都会拿到错误的缓存数据。</p>
+<p>解决失败，核心在于需要对发生异常的那个步骤进行重试，最好是异步重试，也就是放到消息队列中。或者用中间件去订阅MySQL的binlog，比如阿里的canal。</p>
+<p>还有一点：在并发的情况下，无论先后都会有缓存被后来的线程写回了旧值的情况，这种情况对应的解决方案是延迟双删。第一次删除是为了让旧缓存值失效，第二次删除是为了防止可能的别的线程旧值覆盖现象。至于延迟多久只能靠经验评估，要比主从复制、其它线程读数据库+写缓存操作的时间更长就行。一般1-5秒。</p>
+<p>所以缓存和数据库无法保证强一致性，也无需保证，强一致性会带来性能的损失，这是违背缓存初衷的。但是它能保证最终一致性，因为缓存会失效，失效时总会达到一致。</p>
+<h2 id="Redis的单机、主从、Sentinel、Cluster"><a href="#Redis的单机、主从、Sentinel、Cluster" class="headerlink" title="Redis的单机、主从、Sentinel、Cluster"></a>Redis的单机、主从、Sentinel、Cluster</h2><ul>
+<li><p>主从</p>
+<p>实现了数据备份和读写分离，为Sentinel和Cluster提供基石。</p>
+</li>
+<li><p>Sentinel</p>
+<p>  哨兵是 Redis 的一种运行模式.对 Redis 实例（主节点、从节点）运行状态的监控，并能够在主节点发生故障时通过一系列的机制实现选主及主从切换，实现故障转移，确保整个 Redis 系统的可用性。</p>
+</li>
+<li><p>Cluster</p>
+<p>集群主要是实现横向拓展，因为主从受限于单机内存大小。关键要去理解分布式集群中的一致性哈希算法。</p>
+<p>Redis构建Cluster时用了hash slots算法，集群共有16384个slots，每个node持有大量的的slots，key通过CRC16算法再对16384取余以确定自己归属的slots，发生故障的时候迁移slots就可以成本不会特别高。</p>
+<p>分布式系统中更普遍的是采用一致性哈希算法构建一个Hash环，不同于普通哈希的取模算法，哈希环长度一般为2^32。他会对分布式集群中的主机进行一次hash以确定在环中的位置，再对将要存储的key进行哈希，环上顺时针找到的第一台主机就是其应存储的位置。很好的解决了传统哈希算法中大量数据迁移的问题，因为要对主机数取模，而主机数变更后取模会导致全量迁移。其中对主机的hash因为分布不均匀所以会存在数据倾斜的问题，用虚拟节点的方式可解。</p>
+</li>
+</ul>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis%E4%BA%94%E7%A7%8D%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E4%B8%89%E7%A7%8D%E6%96%B0%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-number">1.</span> <span class="toc-text">Redis五种基本数据结构+三种新数据结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sds%E7%9A%84%E7%BB%93%E6%9E%84%E5%92%8C%E7%89%B9%E7%82%B9%EF%BC%9F"><span class="toc-number">2.</span> <span class="toc-text">sds的结构和特点？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#zset%E7%9A%84%E7%BB%93%E6%9E%84%E5%92%8C%E7%89%B9%E7%82%B9%EF%BC%9F"><span class="toc-number">3.</span> <span class="toc-text">zset的结构和特点？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis-%E6%8C%81%E4%B9%85%E5%8C%96%E4%B8%AD-RDB-%E4%BB%A5%E5%8F%8A-AOF-%E6%96%B9%E6%A1%88%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="toc-number">4.</span> <span class="toc-text">Redis 持久化中 RDB 以及 AOF 方案的优缺点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis%E4%B8%BA%E4%BB%80%E4%B9%88%E5%BF%AB%EF%BC%9F"><span class="toc-number">5.</span> <span class="toc-text">Redis为什么快？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis%E7%BC%93%E5%AD%98%E5%88%A0%E9%99%A4%E7%AD%96%E7%95%A5-%E6%B7%98%E6%B1%B0%E7%AD%96%E7%95%A5%EF%BC%9F"><span class="toc-number">6.</span> <span class="toc-text">Redis缓存删除策略+淘汰策略？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis%E9%99%A4%E4%BA%86%E9%94%AE%E5%80%BC%E5%AF%B9%E5%AD%98%E5%82%A8%E4%BB%A5%E5%A4%96%E7%9A%84%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF%EF%BC%9F"><span class="toc-number">7.</span> <span class="toc-text">Redis除了键值对存储以外的使用场景？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis-%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81"><span class="toc-number">8.</span> <span class="toc-text">Redis 如何实现分布式锁</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%93%E5%AD%98%E9%9B%AA%E5%B4%A9-%E7%BC%93%E5%AD%98%E5%87%BB%E7%A9%BF-%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F%EF%BC%9F"><span class="toc-number">9.</span> <span class="toc-text">缓存雪崩+缓存击穿+缓存穿透？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%93%E5%AD%98%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E4%B8%80%E8%87%B4%E6%80%A7%EF%BC%9F"><span class="toc-number">10.</span> <span class="toc-text">缓存和数据库的一致性？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis%E7%9A%84%E5%8D%95%E6%9C%BA%E3%80%81%E4%B8%BB%E4%BB%8E%E3%80%81Sentinel%E3%80%81Cluster"><span class="toc-number">11.</span> <span class="toc-text">Redis的单机、主从、Sentinel、Cluster</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2022/02/22/Redis/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2022/02/22/Redis/&text=Redis相关总结"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2022/02/22/Redis/&title=Redis相关总结"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2022/02/22/Redis/&is_video=false&description=Redis相关总结"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Redis相关总结&body=Check out this article: http://example.com/2022/02/22/Redis/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2022/02/22/Redis/&title=Redis相关总结"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2022/02/22/Redis/&title=Redis相关总结"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2022/02/22/Redis/&title=Redis相关总结"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2022/02/22/Redis/&title=Redis相关总结"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2022/02/22/Redis/&name=Redis相关总结&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2022/02/22/Redis/&t=Redis相关总结"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2017-2022
+    Wang Wenyu
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
